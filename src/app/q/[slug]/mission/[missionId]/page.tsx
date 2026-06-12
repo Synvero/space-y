@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { ScoreDial } from '@/components/ScoreDial'
 import { VoteScale } from '@/components/VoteScale'
+import { ProofModal } from '@/components/ProofModal'
 
 interface PageProps {
   params: Promise<{ slug: string; missionId: string }>
@@ -19,16 +20,19 @@ export default async function MissionPage({ params }: PageProps) {
   const { slug, missionId } = await params
   const supabase = await createClient()
 
-  const { data: mission } = await supabase
-    .from('missions')
-    .select(`
-      id, title, body, rigor, vote_count, score, status, proof_url, proof_note, landed_at, created_at,
-      author:profiles!author_id(id, handle, display_name),
-      question:questions!question_id(id, slug, title, absurdity, orbit)
-    `)
-    .eq('id', missionId)
-    .neq('status', 'removed')
-    .single()
+  const [{ data: mission }, { data: { user } }] = await Promise.all([
+    supabase
+      .from('missions')
+      .select(`
+        id, title, body, rigor, vote_count, score, status, proof_url, proof_note, landed_at, created_at,
+        author:profiles!author_id(id, handle, display_name),
+        question:questions!question_id(id, slug, title, absurdity, orbit)
+      `)
+      .eq('id', missionId)
+      .neq('status', 'removed')
+      .single(),
+    supabase.auth.getUser(),
+  ])
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const m = mission as any
@@ -40,6 +44,8 @@ export default async function MissionPage({ params }: PageProps) {
 
   const statusMeta = STATUS_META[m.status] ?? STATUS_META.proposed
   const isLanded = m.status === 'landed'
+  const isOwner = !!user && author?.id === user.id
+  const canClaim = isOwner && (m.status === 'proposed' || m.status === 'building')
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
@@ -82,11 +88,27 @@ export default async function MissionPage({ params }: PageProps) {
             </p>
           )}
         </div>
-        <ScoreDial
-          score={m.vote_count >= 5 ? m.score : null}
-          voteCount={m.vote_count}
-          size="lg"
-        />
+        <div className="relative shrink-0">
+          {isLanded && (
+            <div
+              className="absolute -inset-2 rounded-full pointer-events-none"
+              style={{ boxShadow: '0 0 0 2px #F5C542, 0 0 12px #F5C54240' }}
+            />
+          )}
+          <ScoreDial
+            score={m.vote_count >= 5 ? m.score : null}
+            voteCount={m.vote_count}
+            size="lg"
+          />
+          {isLanded && (
+            <span
+              className="absolute -top-1 -right-1 text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center"
+              style={{ background: '#F5C542', color: '#0A0E1A' }}
+            >
+              ✓
+            </span>
+          )}
+        </div>
       </div>
 
       {/* Body */}
@@ -95,6 +117,19 @@ export default async function MissionPage({ params }: PageProps) {
           {m.body}
         </div>
       </div>
+
+      {/* Claim Landing (author-only, eligible status) */}
+      {canClaim && (
+        <div className="flex items-center justify-between gap-4 bg-[#111729] border border-[#3DDC9740] rounded-xl p-4 mb-6">
+          <div>
+            <p className="text-sm font-semibold text-[#E8ECF8]">Ready to claim landing?</p>
+            <p className="text-xs text-[#8A94B0] mt-0.5">
+              Built and verified this in the real world? Submit proof — mods review and your score goes ×3.
+            </p>
+          </div>
+          <ProofModal missionId={m.id} />
+        </div>
+      )}
 
       {/* Landing proof */}
       {isLanded && m.proof_url && (
