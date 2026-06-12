@@ -17,8 +17,34 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params
+  const supabase = await createClient()
+
+  const { data: q } = await supabase
+    .from('questions')
+    .select('title, orbit, absurdity, vote_count')
+    .eq('slug', slug)
+    .single()
+
+  const title = q?.title ?? slug.replace(/-/g, ' ')
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
+
+  const ogParams = new URLSearchParams({ title, orbit: q?.orbit ?? 'leo' })
+  if (q?.absurdity != null && q?.vote_count >= 5) {
+    ogParams.set('score', String(Math.round(q.absurdity * 10)))
+  }
+  const ogImageUrl = `${baseUrl}/api/og?${ogParams.toString()}`
+
   return {
-    title: `${slug.replace(/-/g, ' ')} | SPACE Y?`,
+    title,
+    openGraph: {
+      title,
+      images: [{ url: ogImageUrl, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      images: [ogImageUrl],
+    },
   }
 }
 

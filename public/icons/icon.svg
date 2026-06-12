@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#0A0E1A"/>
+  <!-- Stars -->
+  <circle cx="80"  cy="60"  r="2.5" fill="rgba(232,236,248,0.6)"/>
+  <circle cx="420" cy="90"  r="2"   fill="rgba(232,236,248,0.5)"/>
+  <circle cx="460" cy="180" r="1.5" fill="rgba(77,159,255,0.6)"/>
+  <circle cx="55"  cy="380" r="2"   fill="rgba(232,236,248,0.4)"/>
+  <circle cx="450" cy="420" r="2.5" fill="rgba(232,236,248,0.5)"/>
+  <circle cx="130" cy="440" r="1.5" fill="rgba(77,159,255,0.4)"/>
+  <circle cx="380" cy="50"  r="1.5" fill="rgba(232,236,248,0.7)"/>
+  <!-- Y shape -->
+  <path d="M 130 90 L 256 260 L 256 420 L 310 420 L 310 260 L 440 90 L 376 90 L 256 212 L 148 90 Z" fill="#FF6B2C"/>
+  <!-- ? dot -->
+  <circle cx="378" cy="448" r="22" fill="#FF6B2C"/>
+</svg>

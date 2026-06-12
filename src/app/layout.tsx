@@ -29,6 +29,11 @@ export const metadata: Metadata = {
   },
   description: 'SpaceX solves How. We solve Why. Launch an absurd question, watch the internet engineer a rigorous answer.',
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'),
+  manifest: '/manifest.webmanifest',
+  icons: {
+    icon: '/icons/icon.svg',
+    apple: '/icons/icon.svg',
+  },
   openGraph: {
     siteName: 'SPACE Y?',
     type: 'website',
