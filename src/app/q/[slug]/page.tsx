@@ -117,12 +117,12 @@ export default async function QuestionPage({ params }: PageProps) {
             </span>
           )}
         </div>
-        <h1 className="font-heading font-bold text-2xl sm:text-3xl text-[#E8ECF8] leading-snug mb-2">
+        <h1 className="font-heading font-bold text-2xl sm:text-3xl text-[#E8EDF4] leading-snug mb-2">
           {question.title}
         </h1>
         <div className="flex items-center gap-4 text-sm text-[#8A94B0]">
           {author && (
-            <Link href={`/u/${author.handle}`} className="hover:text-[#E8ECF8] transition-colors">
+            <Link href={`/u/${author.handle}`} className="hover:text-[#E8EDF4] transition-colors">
               @{author.handle}
             </Link>
           )}
@@ -137,7 +137,7 @@ export default async function QuestionPage({ params }: PageProps) {
         {question.tags?.length > 0 && (
           <div className="flex flex-wrap gap-1.5 mt-3">
             {(question.tags as string[]).map((tag: string) => (
-              <span key={tag} className="text-xs text-[#8A94B0] bg-[#1E2740] rounded px-2 py-0.5">
+              <span key={tag} className="text-xs text-[#8A94B0] bg-[#1B2531] rounded px-2 py-0.5">
                 #{tag}
               </span>
             ))}
@@ -146,9 +146,9 @@ export default async function QuestionPage({ params }: PageProps) {
       </div>
 
       {/* Vote absurdity */}
-      <div className="bg-[#111729] border border-[#1E2740] rounded-xl p-4 mb-6">
+      <div className="bg-[#0E141B] border border-[#1B2531] rounded-xl p-4 mb-6">
         <div className="flex items-center justify-between mb-3">
-          <span className="text-sm font-medium text-[#E8ECF8]">How absurd is this question?</span>
+          <span className="text-sm font-medium text-[#E8EDF4]">How absurd is this question?</span>
           <ScoreDial
             score={question.absurdity != null ? Math.round(question.absurdity * 10) : null}
             voteCount={question.vote_count}
@@ -190,20 +190,20 @@ export default async function QuestionPage({ params }: PageProps) {
       {/* Missions */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="font-heading font-semibold text-lg text-[#E8ECF8]">
+          <h2 className="font-heading font-semibold text-lg text-[#E8EDF4]">
             Missions ({missions?.length ?? 0})
           </h2>
           <Link
             href={`/q/${slug}/solve`}
-            className="bg-[#FF6B2C] hover:bg-[#FF8A52] text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+            className="bg-[#2BE36C] hover:bg-[#5AF093] text-[#04110A] text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
           >
             + Propose Solution
           </Link>
         </div>
 
         {(!missions || missions.length === 0) ? (
-          <div className="bg-[#111729] border border-[#1E2740] rounded-xl p-8 text-center">
-            <p className="text-[#E8ECF8] font-medium mb-1">No missions yet</p>
+          <div className="bg-[#0E141B] border border-[#1B2531] rounded-xl p-8 text-center">
+            <p className="text-[#E8EDF4] font-medium mb-1">No missions yet</p>
             <p className="text-[#8A94B0] text-sm">Engineer a rigorous answer and propose the first solution.</p>
           </div>
         ) : (
@@ -224,9 +224,9 @@ export default async function QuestionPage({ params }: PageProps) {
             {comments.map(c => {
               const cAuthor = c.author as unknown as { handle: string; display_name: string } | null
               return (
-                <div key={c.id} className="bg-[#111729] border border-[#1E2740] rounded-lg p-3">
+                <div key={c.id} className="bg-[#0E141B] border border-[#1B2531] rounded-lg p-3">
                   <div className="flex items-center gap-2 mb-1.5">
-                    <Link href={`/u/${cAuthor?.handle}`} className="text-xs text-[#4D9FFF] hover:text-[#E8ECF8]">
+                    <Link href={`/u/${cAuthor?.handle}`} className="text-xs text-[#5AC8FF] hover:text-[#E8EDF4]">
                       @{cAuthor?.handle}
                     </Link>
                     <span className="text-xs text-[#8A94B0]">
@@ -234,7 +234,7 @@ export default async function QuestionPage({ params }: PageProps) {
                     </span>
                     <ReportButton targetType="comment" targetId={c.id} />
                   </div>
-                  <p className="text-sm text-[#E8ECF8]">{c.body}</p>
+                  <p className="text-sm text-[#E8EDF4]">{c.body}</p>
                 </div>
               )
             })}

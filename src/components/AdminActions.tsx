@@ -53,7 +53,7 @@ export function AdminActions(props: AdminActionsProps) {
     }
   }
 
-  if (done) return <p className="text-xs text-[#3DDC97]">Done.</p>
+  if (done) return <p className="text-xs text-[#2BE36C]">Done.</p>
 
   if (props.type === 'report') {
     const tableMap: Record<string, string> = { question: 'questions', mission: 'missions', comment: 'comments' }
@@ -81,7 +81,7 @@ export function AdminActions(props: AdminActionsProps) {
             if (error) throw new Error(error.message)
           })}
           disabled={pending !== null}
-          className="px-3 py-1 rounded-lg text-xs font-semibold bg-[#1E2740] text-[#8A94B0] border border-[#1E2740] hover:text-[#E8ECF8] disabled:opacity-50 transition-colors"
+          className="px-3 py-1 rounded-lg text-xs font-semibold bg-[#1B2531] text-[#8A94B0] border border-[#1B2531] hover:text-[#E8EDF4] disabled:opacity-50 transition-colors"
         >
           {pending === 'dismiss' ? 'Dismissing…' : 'Dismiss'}
         </button>
@@ -104,7 +104,7 @@ export function AdminActions(props: AdminActionsProps) {
             if (error) throw new Error(error.message)
           })}
           disabled={pending !== null}
-          className="px-3 py-1 rounded-lg text-xs font-semibold bg-[#3DDC97]/15 text-[#3DDC97] border border-[#3DDC97]/40 hover:bg-[#3DDC97]/25 disabled:opacity-50 transition-colors"
+          className="px-3 py-1 rounded-lg text-xs font-semibold bg-[#2BE36C]/15 text-[#2BE36C] border border-[#2BE36C]/40 hover:bg-[#2BE36C]/25 disabled:opacity-50 transition-colors"
         >
           {pending === 'approve' ? 'Approving…' : 'Approve Landing'}
         </button>
@@ -140,7 +140,7 @@ export function AdminActions(props: AdminActionsProps) {
           if (error) throw new Error(error.message)
         })}
         disabled={pending !== null}
-        className="px-3 py-1 rounded-lg text-xs font-semibold bg-[#3DDC97]/15 text-[#3DDC97] border border-[#3DDC97]/40 hover:bg-[#3DDC97]/25 disabled:opacity-50 transition-colors"
+        className="px-3 py-1 rounded-lg text-xs font-semibold bg-[#2BE36C]/15 text-[#2BE36C] border border-[#2BE36C]/40 hover:bg-[#2BE36C]/25 disabled:opacity-50 transition-colors"
       >
         {pending === 'yes' ? 'Resolving…' : 'Resolve YES'}
       </button>

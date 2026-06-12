@@ -56,8 +56,8 @@ export function MissionEditor({ questionId, questionSlug }: MissionEditorProps) 
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      <div className="bg-[#111729] border border-[#1E2740] rounded-xl p-4 text-xs text-[#8A94B0]">
-        <p className="font-medium text-[#E8ECF8] mb-1">What makes a good mission?</p>
+      <div className="bg-[#0E141B] border border-[#1B2531] rounded-xl p-4 text-xs text-[#8A94B0]">
+        <p className="font-medium text-[#E8EDF4] mb-1">What makes a good mission?</p>
         <ul className="space-y-0.5 list-disc list-inside">
           <li>Be rigorous within the logic of the question</li>
           <li>Include steps, materials, or a mechanism</li>
@@ -66,7 +66,7 @@ export function MissionEditor({ questionId, questionSlug }: MissionEditorProps) 
       </div>
 
       <div className="space-y-2">
-        <Label className="text-[#E8ECF8] text-sm">Mission title</Label>
+        <Label className="text-[#E8EDF4] text-sm">Mission title</Label>
         <Input
           value={title}
           onChange={e => setTitle(e.target.value)}
@@ -74,13 +74,13 @@ export function MissionEditor({ questionId, questionSlug }: MissionEditorProps) 
           required
           minLength={5}
           maxLength={140}
-          className="bg-[#0A0E1A] border-[#1E2740] text-[#E8ECF8] placeholder:text-[#8A94B0]"
+          className="bg-[#070A0F] border-[#1B2531] text-[#E8EDF4] placeholder:text-[#8A94B0]"
         />
         <p className="text-xs text-[#8A94B0] text-right">{title.length}/140</p>
       </div>
 
       <div className="space-y-2">
-        <Label className="text-[#E8ECF8] text-sm">
+        <Label className="text-[#E8EDF4] text-sm">
           Mission body (Markdown supported)
         </Label>
         <textarea
@@ -91,7 +91,7 @@ export function MissionEditor({ questionId, questionSlug }: MissionEditorProps) 
           required
           minLength={20}
           maxLength={16000}
-          className="w-full bg-[#0A0E1A] border border-[#1E2740] rounded-lg px-3 py-2 text-sm text-[#E8ECF8] placeholder:text-[#8A94B0] resize-y focus:outline-none focus:border-[#FF6B2C] font-mono"
+          className="w-full bg-[#070A0F] border border-[#1B2531] rounded-lg px-3 py-2 text-sm text-[#E8EDF4] placeholder:text-[#8A94B0] resize-y focus:outline-none focus:border-[#2BE36C] font-mono"
         />
         <p className="text-xs text-[#8A94B0] text-right">{body.length}/16000</p>
       </div>
@@ -102,14 +102,14 @@ export function MissionEditor({ questionId, questionSlug }: MissionEditorProps) 
         <button
           type="button"
           onClick={() => router.back()}
-          className="flex-1 border border-[#1E2740] text-[#8A94B0] hover:text-[#E8ECF8] rounded-lg py-2.5 text-sm transition-colors"
+          className="flex-1 border border-[#1B2531] text-[#8A94B0] hover:text-[#E8EDF4] rounded-lg py-2.5 text-sm transition-colors"
         >
           Cancel
         </button>
         <button
           type="submit"
           disabled={submitting || title.length < 5 || body.length < 20}
-          className="flex-1 bg-[#FF6B2C] hover:bg-[#FF8A52] text-white font-semibold rounded-lg py-2.5 text-sm transition-colors disabled:opacity-50"
+          className="flex-1 bg-[#2BE36C] hover:bg-[#5AF093] text-[#04110A] font-semibold rounded-lg py-2.5 text-sm transition-colors disabled:opacity-50"
         >
           {submitting ? 'Proposing…' : 'Propose Mission'}
         </button>

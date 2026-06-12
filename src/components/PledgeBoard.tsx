@@ -90,8 +90,8 @@ export function PledgeBoard({ targetType, targetId, initialPledges, currentUserI
   }
 
   return (
-    <div className="bg-[#111729] border border-[#1E2740] rounded-xl overflow-hidden">
-      <div className="flex items-center justify-between px-4 py-3 border-b border-[#1E2740]">
+    <div className="bg-[#0E141B] border border-[#1B2531] rounded-xl overflow-hidden">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-[#1B2531]">
         <div>
           <p className="text-xs text-[#8A94B0] font-mono mb-0.5">PLEDGE BOARD</p>
           <p className="font-mono text-[#F5C542] font-bold text-lg">
@@ -107,7 +107,7 @@ export function PledgeBoard({ targetType, targetId, initialPledges, currentUserI
       </div>
 
       {showForm && (
-        <form onSubmit={handlePledge} className="px-4 py-3 border-b border-[#1E2740] space-y-2">
+        <form onSubmit={handlePledge} className="px-4 py-3 border-b border-[#1B2531] space-y-2">
           <div className="flex gap-2">
             <div className="relative flex-1">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[#8A94B0]">€</span>
@@ -119,7 +119,7 @@ export function PledgeBoard({ targetType, targetId, initialPledges, currentUserI
                 value={amount}
                 onChange={e => setAmount(e.target.value)}
                 placeholder="100"
-                className="w-full bg-[#0A0E1A] border border-[#1E2740] rounded-lg pl-7 pr-3 py-1.5 text-sm font-mono text-[#E8ECF8] placeholder-[#8A94B0]/50 focus:outline-none focus:border-[#F5C542]/50"
+                className="w-full bg-[#070A0F] border border-[#1B2531] rounded-lg pl-7 pr-3 py-1.5 text-sm font-mono text-[#E8EDF4] placeholder-[#8A94B0]/50 focus:outline-none focus:border-[#F5C542]/50"
               />
             </div>
           </div>
@@ -129,13 +129,13 @@ export function PledgeBoard({ targetType, targetId, initialPledges, currentUserI
             onChange={e => setMessage(e.target.value)}
             maxLength={280}
             placeholder="Optional note..."
-            className="w-full bg-[#0A0E1A] border border-[#1E2740] rounded-lg px-3 py-1.5 text-sm text-[#E8ECF8] placeholder-[#8A94B0]/50 focus:outline-none focus:border-[#F5C542]/50"
+            className="w-full bg-[#070A0F] border border-[#1B2531] rounded-lg px-3 py-1.5 text-sm text-[#E8EDF4] placeholder-[#8A94B0]/50 focus:outline-none focus:border-[#F5C542]/50"
           />
           {error && <p className="text-xs text-[#FF5470]">{error}</p>}
           <button
             type="submit"
             disabled={pending}
-            className="w-full py-1.5 rounded-lg text-sm font-semibold bg-[#F5C542] hover:bg-[#FFDC6B] text-[#0A0E1A] transition-colors disabled:opacity-50"
+            className="w-full py-1.5 rounded-lg text-sm font-semibold bg-[#F5C542] hover:bg-[#FFDC6B] text-[#070A0F] transition-colors disabled:opacity-50"
           >
             {pending ? 'Submitting…' : 'Pledge'}
           </button>
@@ -147,7 +147,7 @@ export function PledgeBoard({ targetType, targetId, initialPledges, currentUserI
           <p className="text-sm text-[#8A94B0]">No pledges yet. Be the first.</p>
         </div>
       ) : (
-        <div className="divide-y divide-[#1E2740]">
+        <div className="divide-y divide-[#1B2531]">
           {pledges.map(p => (
             <div key={p.id} className="px-4 py-3 flex items-start gap-3">
               <div className="font-mono text-sm font-bold text-[#F5C542] shrink-0 w-20 text-right">
@@ -155,7 +155,7 @@ export function PledgeBoard({ targetType, targetId, initialPledges, currentUserI
               </div>
               <div className="flex-1 min-w-0">
                 {p.message && (
-                  <p className="text-sm text-[#E8ECF8] mb-0.5">{p.message}</p>
+                  <p className="text-sm text-[#E8EDF4] mb-0.5">{p.message}</p>
                 )}
                 <p className="text-xs text-[#8A94B0]">
                   @{p.user?.handle ?? 'anonymous'}
@@ -175,7 +175,7 @@ export function PledgeBoard({ targetType, targetId, initialPledges, currentUserI
         </div>
       )}
 
-      <div className="px-4 py-3 border-t border-[#1E2740]">
+      <div className="px-4 py-3 border-t border-[#1B2531]">
         <p className="text-xs text-[#8A94B0]">
           Pledges are public statements of intent. SPACE Y? does not hold or transfer money. Settlement happens directly between you and the builder.
         </p>

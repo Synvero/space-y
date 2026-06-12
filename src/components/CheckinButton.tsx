@@ -25,13 +25,13 @@ export function CheckinButtonClient() {
     }
   }
 
-  if (msg) return <p className="text-xs text-[#3DDC97]">{msg}</p>
+  if (msg) return <p className="text-xs text-[#2BE36C]">{msg}</p>
 
   return (
     <button
       onClick={handleCheckin}
       disabled={pending}
-      className="bg-[#F5C542] hover:bg-[#FFDC6B] text-[#0A0E1A] text-sm font-semibold px-4 py-2 rounded-lg transition-colors disabled:opacity-50"
+      className="bg-[#F5C542] hover:bg-[#FFDC6B] text-[#070A0F] text-sm font-semibold px-4 py-2 rounded-lg transition-colors disabled:opacity-50"
     >
       {pending ? 'Checking in…' : 'Daily Check-in (+25 ⛽)'}
     </button>

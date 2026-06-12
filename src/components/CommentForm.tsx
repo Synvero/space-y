@@ -49,14 +49,14 @@ export function CommentForm({ targetType, targetId }: CommentFormProps) {
         rows={2}
         maxLength={2000}
         placeholder="Add a comment..."
-        className="w-full bg-[#111729] border border-[#1E2740] rounded-xl px-3 py-2 text-sm text-[#E8ECF8] placeholder-[#8A94B0]/50 focus:outline-none focus:border-[#FF6B2C]/40 resize-none"
+        className="w-full bg-[#0E141B] border border-[#1B2531] rounded-xl px-3 py-2 text-sm text-[#E8EDF4] placeholder-[#8A94B0]/50 focus:outline-none focus:border-[#2BE36C]/40 resize-none"
       />
       {error && <p className="text-xs text-[#FF5470] mt-1">{error}</p>}
       <div className="flex justify-end mt-2">
         <button
           type="submit"
           disabled={pending || !body.trim()}
-          className="px-4 py-1.5 rounded-lg text-sm font-semibold bg-[#1E2740] text-[#E8ECF8] hover:bg-[#2A3550] transition-colors disabled:opacity-50"
+          className="px-4 py-1.5 rounded-lg text-sm font-semibold bg-[#1B2531] text-[#E8EDF4] hover:bg-[#2A3744] transition-colors disabled:opacity-50"
         >
           {pending ? 'Posting…' : 'Post'}
         </button>

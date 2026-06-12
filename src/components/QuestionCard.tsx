@@ -35,9 +35,9 @@ export function QuestionCard({
   return (
     <Link
       href={`/q/${slug}`}
-      className="block bg-[#111729] rounded-xl p-4 transition-all hover:shadow-lg group"
+      className="block bg-[#0E141B] rounded-xl p-4 transition-all hover:shadow-lg group"
       style={{
-        border: isLanded ? '1px solid #F5C54240' : '1px solid #1E2740',
+        border: isLanded ? '1px solid #F5C54240' : '1px solid #1B2531',
         boxShadow: isLanded ? '0 0 12px #F5C54210' : undefined,
       }}
     >
@@ -59,7 +59,7 @@ export function QuestionCard({
               </span>
             )}
           </div>
-          <h2 className="text-[#E8ECF8] font-medium text-sm leading-snug group-hover:text-white transition-colors">
+          <h2 className="text-[#E8EDF4] font-medium text-sm leading-snug group-hover:text-white transition-colors">
             {title}
           </h2>
           <div className="flex items-center gap-3 mt-2 text-xs text-[#8A94B0]">
@@ -67,7 +67,7 @@ export function QuestionCard({
               <span>{missionCount} mission{missionCount !== 1 ? 's' : ''}</span>
             )}
             {pledgeSumEur > 0 && (
-              <span className="text-[#3DDC97]">€{pledgeSumEur} pledged</span>
+              <span className="text-[#2BE36C]">€{pledgeSumEur} pledged</span>
             )}
           </div>
         </div>
@@ -79,11 +79,11 @@ export function QuestionCard({
           <div className="h-1.5 rounded-full overflow-hidden bg-[#FF5470]/20 flex">
             <div
               className="h-full rounded-l-full transition-all"
-              style={{ width: `${yesPercent}%`, backgroundColor: '#4D9FFF' }}
+              style={{ width: `${yesPercent}%`, backgroundColor: '#5AC8FF' }}
             />
           </div>
           <div className="flex justify-between text-[10px] font-mono">
-            <span style={{ color: '#4D9FFF' }}>{yesPercent}% YES</span>
+            <span style={{ color: '#5AC8FF' }}>{yesPercent}% YES</span>
             <span style={{ color: '#FF5470' }}>{100 - yesPercent}% NO</span>
           </div>
         </div>

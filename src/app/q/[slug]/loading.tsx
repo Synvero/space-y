@@ -13,7 +13,7 @@ export default function Loading() {
       </div>
 
       {/* Vote card */}
-      <div className="bg-[#111729] border border-[#1E2740] rounded-xl p-4 mb-6">
+      <div className="bg-[#0E141B] border border-[#1B2531] rounded-xl p-4 mb-6">
         <div className="flex justify-between mb-3">
           <div className="skeleton h-4 w-48" />
           <div className="skeleton h-8 w-8 rounded-full" />
@@ -22,7 +22,7 @@ export default function Loading() {
       </div>
 
       {/* Market */}
-      <div className="bg-[#111729] border border-[#1E2740] rounded-xl p-4 mb-6">
+      <div className="bg-[#0E141B] border border-[#1B2531] rounded-xl p-4 mb-6">
         <div className="flex justify-between mb-2">
           <div className="skeleton h-3 w-32" />
           <div className="skeleton h-3 w-12" />
@@ -43,7 +43,7 @@ export default function Loading() {
 
       {/* Mission cards */}
       {[1, 2].map(i => (
-        <div key={i} className="bg-[#111729] border border-[#1E2740] rounded-xl p-4 mb-3">
+        <div key={i} className="bg-[#0E141B] border border-[#1B2531] rounded-xl p-4 mb-3">
           <div className="skeleton h-4 w-3/4 mb-2" />
           <div className="skeleton h-3 w-1/2 mb-3" />
           <div className="skeleton h-6 w-full" />

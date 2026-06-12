@@ -32,7 +32,7 @@ export function FeedTabs({ activeTab, activeOrbit }: FeedTabsProps) {
   return (
     <div className="space-y-3">
       {/* Tab bar */}
-      <div className="flex items-center gap-1 border-b border-[#1E2740]">
+      <div className="flex items-center gap-1 border-b border-[#1B2531]">
         {TABS.map(t => (
           <Link
             key={t.key}
@@ -40,8 +40,8 @@ export function FeedTabs({ activeTab, activeOrbit }: FeedTabsProps) {
             className={`
               px-4 py-2.5 text-sm font-medium transition-colors border-b-2 -mb-px
               ${activeTab === t.key
-                ? 'text-[#E8ECF8] border-[#FF6B2C]'
-                : 'text-[#8A94B0] border-transparent hover:text-[#E8ECF8]'
+                ? 'text-[#E8EDF4] border-[#2BE36C]'
+                : 'text-[#8A94B0] border-transparent hover:text-[#E8EDF4]'
               }
             `}
           >
@@ -56,8 +56,8 @@ export function FeedTabs({ activeTab, activeOrbit }: FeedTabsProps) {
           href={buildHref(activeTab)}
           className={`text-xs px-3 py-1 rounded-full border transition-colors font-mono ${
             !activeOrbit
-              ? 'border-[#FF6B2C] text-[#FF6B2C] bg-[#FF6B2C]/10'
-              : 'border-[#1E2740] text-[#8A94B0] hover:border-[#8A94B0]'
+              ? 'border-[#2BE36C] text-[#2BE36C] bg-[#2BE36C]/10'
+              : 'border-[#1B2531] text-[#8A94B0] hover:border-[#8A94B0]'
           }`}
         >
           ALL

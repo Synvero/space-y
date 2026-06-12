@@ -2,9 +2,9 @@ export type Orbit = 'leo' | 'geo' | 'moon' | 'mars' | 'deep_space'
 
 export const ORBIT_META: Record<Orbit, { label: string; color: string; bg: string; border: string; minAbsurdity: number }> = {
   leo:        { label: 'Everyday strange',    color: '#8A94B0', bg: '#8A94B0', border: '#8A94B040', minAbsurdity: 0   },
-  geo:        { label: 'Properly weird',      color: '#4D9FFF', bg: '#4D9FFF', border: '#4D9FFF40', minAbsurdity: 3   },
-  moon:       { label: 'Absurd',              color: '#E8ECF8', bg: '#E8ECF8', border: '#E8ECF840', minAbsurdity: 5   },
-  mars:       { label: 'Gloriously absurd',   color: '#FF6B2C', bg: '#FF6B2C', border: '#FF6B2C40', minAbsurdity: 7   },
+  geo:        { label: 'Properly weird',      color: '#5AC8FF', bg: '#5AC8FF', border: '#5AC8FF40', minAbsurdity: 3   },
+  moon:       { label: 'Absurd',              color: '#E8EDF4', bg: '#E8EDF4', border: '#E8EDF440', minAbsurdity: 5   },
+  mars:       { label: 'Gloriously absurd',   color: '#2BE36C', bg: '#2BE36C', border: '#2BE36C40', minAbsurdity: 7   },
   deep_space: { label: 'Civilizational',      color: '#F5C542', bg: '#F5C542', border: '#F5C54240', minAbsurdity: 8.5 },
 }
 

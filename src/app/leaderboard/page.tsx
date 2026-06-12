@@ -72,18 +72,18 @@ export default async function LeaderboardPage({ searchParams }: PageProps) {
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-8">
-      <h1 className="font-heading font-bold text-2xl text-[#E8ECF8] mb-6">Leaderboard</h1>
+      <h1 className="font-heading font-bold text-2xl text-[#E8EDF4] mb-6">Leaderboard</h1>
 
       {/* Tab bar */}
-      <div className="flex gap-1 bg-[#111729] border border-[#1E2740] rounded-xl p-1 mb-6">
+      <div className="flex gap-1 bg-[#0E141B] border border-[#1B2531] rounded-xl p-1 mb-6">
         {TABS.map(t => (
           <Link
             key={t.key}
             href={`/leaderboard?tab=${t.key}`}
             className={`flex-1 text-center py-1.5 rounded-lg text-sm font-medium transition-colors ${
               tab === t.key
-                ? 'bg-[#1E2740] text-[#E8ECF8]'
-                : 'text-[#8A94B0] hover:text-[#E8ECF8]'
+                ? 'bg-[#1B2531] text-[#E8EDF4]'
+                : 'text-[#8A94B0] hover:text-[#E8EDF4]'
             }`}
           >
             {t.label}
@@ -94,7 +94,7 @@ export default async function LeaderboardPage({ searchParams }: PageProps) {
       {/* Table */}
       {rows.length === 0 ? (
         <div className="text-center py-12">
-          <p className="text-[#E8ECF8] font-medium mb-1">No crew ranked yet</p>
+          <p className="text-[#E8EDF4] font-medium mb-1">No crew ranked yet</p>
           <p className="text-[#8A94B0] text-sm">Rankings appear once missions are voted on.</p>
         </div>
       ) : (
@@ -103,7 +103,7 @@ export default async function LeaderboardPage({ searchParams }: PageProps) {
             <Link
               key={row.id}
               href={`/u/${row.handle}`}
-              className="flex items-center gap-4 bg-[#111729] border border-[#1E2740] rounded-xl px-4 py-3 hover:border-[#FF6B2C]/40 transition-all"
+              className="flex items-center gap-4 bg-[#0E141B] border border-[#1B2531] rounded-xl px-4 py-3 hover:border-[#2BE36C]/40 transition-all"
             >
               {/* Rank number */}
               <span
@@ -115,13 +115,13 @@ export default async function LeaderboardPage({ searchParams }: PageProps) {
               </span>
 
               {/* Avatar */}
-              <div className="w-8 h-8 rounded-full bg-[#1E2740] border border-[#FF6B2C]/20 flex items-center justify-center text-xs font-bold text-[#E8ECF8] shrink-0">
+              <div className="w-8 h-8 rounded-full bg-[#1B2531] border border-[#2BE36C]/20 flex items-center justify-center text-xs font-bold text-[#E8EDF4] shrink-0">
                 {row.handle[0].toUpperCase()}
               </div>
 
               {/* Name + rank */}
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-[#E8ECF8] truncate">{row.display_name}</p>
+                <p className="text-sm font-medium text-[#E8EDF4] truncate">{row.display_name}</p>
                 <p className="text-xs text-[#8A94B0]">@{row.handle} · {rankLabel(row.reputation)}</p>
               </div>
 
@@ -135,7 +135,7 @@ export default async function LeaderboardPage({ searchParams }: PageProps) {
                 )}
                 {tab === 'landings' && (
                   <>
-                    <p className="font-mono font-bold text-[#3DDC97]">{row.landingCount} landed</p>
+                    <p className="font-mono font-bold text-[#2BE36C]">{row.landingCount} landed</p>
                     <p className="text-xs font-mono text-[#8A94B0]">{row.scoreSum} pts</p>
                   </>
                 )}

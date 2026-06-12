@@ -50,7 +50,7 @@ export default function RootLayout({
       lang="en"
       className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="min-h-screen bg-[#0A0E1A] text-[#E8ECF8] font-sans">
+      <body className="min-h-screen bg-[#070A0F] text-[#E8EDF4] font-sans">
         <div className="starfield" aria-hidden="true" />
         <div className="relative z-10 flex flex-col min-h-screen">
           <Header />

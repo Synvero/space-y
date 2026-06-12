@@ -42,7 +42,7 @@ export function ProofModal({ missionId }: ProofModalProps) {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="bg-[#3DDC97] hover:bg-[#5EEAAC] text-[#0A0E1A] text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+        className="bg-[#2BE36C] hover:bg-[#5AF093] text-[#070A0F] text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
       >
         Claim Landing
       </button>
@@ -52,8 +52,8 @@ export function ProofModal({ missionId }: ProofModalProps) {
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
           onClick={e => { if (e.target === e.currentTarget) setOpen(false) }}
         >
-          <div className="bg-[#111729] border border-[#1E2740] rounded-2xl p-6 w-full max-w-md">
-            <h2 className="font-heading font-bold text-xl text-[#E8ECF8] mb-1">
+          <div className="bg-[#0E141B] border border-[#1B2531] rounded-2xl p-6 w-full max-w-md">
+            <h2 className="font-heading font-bold text-xl text-[#E8EDF4] mb-1">
               Claim Landing
             </h2>
             <p className="text-sm text-[#8A94B0] mb-5">
@@ -68,7 +68,7 @@ export function ProofModal({ missionId }: ProofModalProps) {
                   value={proofUrl}
                   onChange={e => setProofUrl(e.target.value)}
                   placeholder="https://youtube.com/watch?v=... or github.com/..."
-                  className="w-full bg-[#0A0E1A] border border-[#1E2740] rounded-lg px-3 py-2 text-sm text-[#E8ECF8] placeholder-[#8A94B0]/50 focus:outline-none focus:border-[#3DDC97]/50"
+                  className="w-full bg-[#070A0F] border border-[#1B2531] rounded-lg px-3 py-2 text-sm text-[#E8EDF4] placeholder-[#8A94B0]/50 focus:outline-none focus:border-[#2BE36C]/50"
                 />
               </div>
               <div>
@@ -79,7 +79,7 @@ export function ProofModal({ missionId }: ProofModalProps) {
                   rows={3}
                   maxLength={500}
                   placeholder="Describe what you built and how you verified it..."
-                  className="w-full bg-[#0A0E1A] border border-[#1E2740] rounded-lg px-3 py-2 text-sm text-[#E8ECF8] placeholder-[#8A94B0]/50 focus:outline-none focus:border-[#3DDC97]/50 resize-none"
+                  className="w-full bg-[#070A0F] border border-[#1B2531] rounded-lg px-3 py-2 text-sm text-[#E8EDF4] placeholder-[#8A94B0]/50 focus:outline-none focus:border-[#2BE36C]/50 resize-none"
                 />
               </div>
 
@@ -89,14 +89,14 @@ export function ProofModal({ missionId }: ProofModalProps) {
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  className="flex-1 py-2 rounded-lg text-sm border border-[#1E2740] text-[#8A94B0] hover:text-[#E8ECF8] transition-colors"
+                  className="flex-1 py-2 rounded-lg text-sm border border-[#1B2531] text-[#8A94B0] hover:text-[#E8EDF4] transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={pending}
-                  className="flex-1 py-2 rounded-lg text-sm font-semibold bg-[#3DDC97] hover:bg-[#5EEAAC] text-[#0A0E1A] transition-colors disabled:opacity-50"
+                  className="flex-1 py-2 rounded-lg text-sm font-semibold bg-[#2BE36C] hover:bg-[#5AF093] text-[#070A0F] transition-colors disabled:opacity-50"
                 >
                   {pending ? 'Submitting…' : 'Submit Claim'}
                 </button>

@@ -65,14 +65,14 @@ export function VoteScale({ targetType, targetId, dimension, currentVote, voteCo
             className={`
               flex-1 h-6 rounded text-xs font-mono transition-all
               ${selected === v
-                ? 'text-[#0A0E1A] font-bold'
-                : 'text-[#8A94B0] hover:text-[#E8ECF8]'
+                ? 'text-[#070A0F] font-bold'
+                : 'text-[#8A94B0] hover:text-[#E8EDF4]'
               }
             `}
             style={{
               backgroundColor: selected === v
-                ? dimension === 'absurdity' ? '#F5C542' : '#3DDC97'
-                : `${dimension === 'absurdity' ? '#F5C542' : '#3DDC97'}${Math.round((v / 10) * 40).toString(16).padStart(2, '0')}`,
+                ? dimension === 'absurdity' ? '#F5C542' : '#2BE36C'
+                : `${dimension === 'absurdity' ? '#F5C542' : '#2BE36C'}${Math.round((v / 10) * 40).toString(16).padStart(2, '0')}`,
             }}
             title={`${v}/10`}
           >

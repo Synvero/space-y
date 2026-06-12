@@ -31,42 +31,46 @@
 }
 
 :root {
-  --background: #0A0E1A;
-  --surface: #111729;
-  --border: #1E2740;
-  --foreground: #E8ECF8;
+  --background: #070A0F;
+  --surface: #0E141B;
+  --border: #1B2531;
+  --foreground: #E8EDF4;
   --muted: #8A94B0;
-  --primary: #FF6B2C;
-  --primary-hover: #FF8A52;
+  --primary: #2BE36C;
+  --primary-hover: #5AF093;
   --score: #F5C542;
-  --market: #4D9FFF;
-  --success: #3DDC97;
+  --market: #5AC8FF;
+  --success: #2BE36C;
   --danger: #FF5470;
 
   /* shadcn compatibility */
-  --card: #111729;
-  --card-foreground: #E8ECF8;
-  --popover: #111729;
-  --popover-foreground: #E8ECF8;
-  --primary-foreground: #0A0E1A;
-  --secondary: #1E2740;
-  --secondary-foreground: #E8ECF8;
+  --card: #0E141B;
+  --card-foreground: #E8EDF4;
+  --popover: #0E141B;
+  --popover-foreground: #E8EDF4;
+  --primary-foreground: #070A0F;
+  --secondary: #1B2531;
+  --secondary-foreground: #E8EDF4;
   --muted-foreground: #8A94B0;
-  --accent: #1E2740;
-  --accent-foreground: #E8ECF8;
+  --accent: #1B2531;
+  --accent-foreground: #E8EDF4;
   --destructive: #FF5470;
-  --input: #1E2740;
-  --ring: #FF6B2C;
+  --input: #1B2531;
+  --ring: #2BE36C;
 }
 
 @layer base {
   * {
     box-sizing: border-box;
-    border-color: var(--color-border, #1E2740);
+    border-color: var(--color-border, #1B2531);
   }
   body {
-    background-color: #0A0E1A;
-    color: #E8ECF8;
+    background-color: #070A0F;
+    background-image:
+      radial-gradient(900px 520px at 50% -10%, rgba(43,227,108,0.10), transparent 70%),
+      radial-gradient(760px 520px at 90% 2%, rgba(90,200,255,0.075), transparent 70%);
+    background-attachment: fixed;
+    color: #E8EDF4;
     font-family: var(--font-sans, system-ui, sans-serif);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -115,9 +119,9 @@
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(1px 1px at 20% 70%, rgba(77,159,255,0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 50% 30%, rgba(77,159,255,0.2) 0%, transparent 100%),
-    radial-gradient(1px 1px at 70% 85%, rgba(77,159,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 20% 70%, rgba(90,200,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 30%, rgba(90,200,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 85%, rgba(90,200,255,0.3) 0%, transparent 100%),
     radial-gradient(1px 1px at 35% 15%, rgba(232,236,248,0.5) 0%, transparent 100%),
     radial-gradient(1px 1px at 88% 40%, rgba(232,236,248,0.4) 0%, transparent 100%),
     radial-gradient(1px 1px at 12% 60%, rgba(232,236,248,0.6) 0%, transparent 100%),
@@ -150,7 +154,7 @@
   }
   .skeleton {
     animation: none;
-    background: #1E2740;
+    background: #1B2531;
   }
 }
 
@@ -174,11 +178,31 @@
 .skeleton {
   background: linear-gradient(
     90deg,
-    #111729 25%,
-    #1E2740 50%,
-    #111729 75%
+    #0E141B 25%,
+    #1B2531 50%,
+    #0E141B 75%
   );
   background-size: 800px 100%;
   animation: skeleton-shimmer 1.4s ease-in-out infinite;
   border-radius: 6px;
 }
+
+/* ── Accent glows (matrix green / light blue) ── */
+.glow-green { box-shadow: 0 0 0 1px rgba(43,227,108,0.22), 0 10px 34px -10px rgba(43,227,108,0.45); }
+.glow-blue  { box-shadow: 0 0 0 1px rgba(90,200,255,0.20), 0 10px 34px -10px rgba(90,200,255,0.40); }
+.text-glow-green { text-shadow: 0 0 20px rgba(43,227,108,0.55); }
+.text-glow-blue  { text-shadow: 0 0 20px rgba(90,200,255,0.50); }
+
+/* Launch CTA: living matrix-green glow */
+.cta-glow {
+  box-shadow: 0 0 22px -6px rgba(43,227,108,0.6);
+  transition: box-shadow 200ms ease, transform 120ms ease;
+}
+.cta-glow:hover { box-shadow: 0 0 30px -2px rgba(43,227,108,0.9); transform: translateY(-1px); }
+
+/* gradient hairline divider */
+.hairline { height: 1px; background: linear-gradient(90deg, transparent, rgba(90,200,255,0.45), rgba(43,227,108,0.45), transparent); }
+
+/* card hover lift */
+.card-hover { transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease; }
+.card-hover:hover { border-color: rgba(43,227,108,0.45); box-shadow: 0 0 28px -14px rgba(43,227,108,0.55); transform: translateY(-1px); }

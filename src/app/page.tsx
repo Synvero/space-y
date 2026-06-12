@@ -69,13 +69,13 @@ export default async function HomePage({ searchParams }: PageProps) {
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/launch"
-              className="bg-[#FF6B2C] hover:bg-[#FF8A52] text-white font-semibold px-8 py-3 text-base rounded-lg transition-colors"
+              className="cta-glow bg-[#2BE36C] hover:bg-[#5AF093] text-[#04110A] font-semibold px-8 py-3 text-base rounded-lg transition-colors"
             >
               Launch a Why
             </Link>
             <Link
               href="/about"
-              className="border border-[#1E2740] text-[#E8ECF8] hover:bg-[#1E2740] px-8 py-3 text-base rounded-lg transition-colors"
+              className="border border-[#1B2531] text-[#E8EDF4] hover:bg-[#1B2531] px-8 py-3 text-base rounded-lg transition-colors"
             >
               How it works
             </Link>
@@ -83,17 +83,52 @@ export default async function HomePage({ searchParams }: PageProps) {
         </div>
       ) : (
         <>
+          {/* Hero strip */}
+          <div className="text-center pt-2 pb-9">
+            <h1 className="font-heading text-[1.9rem] sm:text-[2.6rem] font-bold leading-[1.05] tracking-tight">
+              <span
+                style={{
+                  backgroundImage: 'linear-gradient(180deg,#FFFFFF,#AEB9C9)',
+                  WebkitBackgroundClip: 'text',
+                  backgroundClip: 'text',
+                  color: 'transparent',
+                }}
+              >
+                Ask the absurd.
+              </span>{' '}
+              <span className="text-[#2BE36C] text-glow-green">Engineer the answer.</span>
+            </h1>
+            <p className="mt-3 text-[#8A94B0] text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+              SpaceX solves How. <span className="text-[#E8EDF4] font-medium">SPACE&nbsp;Y?</span> solves Why.
+              The more absurd the question and the more airtight the solution, the higher you fly.
+            </p>
+            <div className="mt-5 flex items-center justify-center gap-3">
+              <Link
+                href="/launch"
+                className="cta-glow inline-flex items-center bg-[#2BE36C] hover:bg-[#5AF093] text-[#04110A] font-semibold rounded-lg px-5 py-2.5 text-sm"
+              >
+                Launch a Why
+              </Link>
+              <Link
+                href="/about"
+                className="border border-[#1B2531] text-[#8A94B0] hover:text-[#E8EDF4] rounded-lg px-5 py-2.5 text-sm transition-colors"
+              >
+                How it works
+              </Link>
+            </div>
+            <div className="hairline mt-8 max-w-xs mx-auto" />
+          </div>
           <FeedTabs activeTab={tab} activeOrbit={orbit} />
           {questions.length === 0 ? (
             <div className="text-center py-16">
-              <p className="font-mono text-[#1E2740] text-5xl font-bold mb-4" aria-hidden="true">
+              <p className="font-mono text-[#1B2531] text-5xl font-bold mb-4" aria-hidden="true">
                 ✦
               </p>
-              <p className="text-[#E8ECF8] font-medium mb-1">No launches yet</p>
+              <p className="text-[#E8EDF4] font-medium mb-1">No launches yet</p>
               <p className="text-[#8A94B0] text-sm mb-6">Be the first to ask Why.</p>
               <Link
                 href="/launch"
-                className="inline-block bg-[#FF6B2C] hover:bg-[#FF8A52] text-white font-semibold px-6 py-2.5 rounded-lg transition-colors text-sm"
+                className="inline-block cta-glow bg-[#2BE36C] hover:bg-[#5AF093] text-[#04110A] font-semibold px-6 py-2.5 rounded-lg transition-colors text-sm"
               >
                 Launch a Why
               </Link>

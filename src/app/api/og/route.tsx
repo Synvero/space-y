@@ -4,9 +4,9 @@ export const runtime = 'edge'
 
 const ORBIT_META: Record<string, { label: string; color: string }> = {
   leo:        { label: 'LEO',       color: '#8A94B0' },
-  geo:        { label: 'GEO',       color: '#4D9FFF' },
-  moon:       { label: 'MOON',      color: '#E8ECF8' },
-  mars:       { label: 'MARS',      color: '#FF6B2C' },
+  geo:        { label: 'GEO',       color: '#5AC8FF' },
+  moon:       { label: 'MOON',      color: '#E8EDF4' },
+  mars:       { label: 'MARS',      color: '#2BE36C' },
   deep_space: { label: 'DEEP',      color: '#F5C542' },
 }
 
@@ -41,7 +41,7 @@ export function GET(request: Request) {
           flexDirection: 'column',
           justifyContent: 'space-between',
           padding: '60px 80px',
-          background: '#0A0E1A',
+          background: '#070A0F',
           position: 'relative',
           fontFamily: 'system-ui, -apple-system, Helvetica, Arial, sans-serif',
         }}
@@ -58,7 +58,7 @@ export function GET(request: Request) {
               height: star.r * 2,
               borderRadius: '50%',
               background: i % 5 === 0
-                ? 'rgba(77, 159, 255, 0.5)'
+                ? 'rgba(90,200,255, 0.5)'
                 : 'rgba(232, 236, 248, 0.55)',
             }}
           />
@@ -70,7 +70,7 @@ export function GET(request: Request) {
             style={{
               fontSize: 30,
               fontWeight: 700,
-              color: '#E8ECF8',
+              color: '#E8EDF4',
               letterSpacing: '-0.5px',
             }}
           >
@@ -80,7 +80,7 @@ export function GET(request: Request) {
             style={{
               fontSize: 30,
               fontWeight: 700,
-              color: '#FF6B2C',
+              color: '#2BE36C',
               fontStyle: 'italic',
             }}
           >
@@ -102,7 +102,7 @@ export function GET(request: Request) {
             style={{
               fontSize,
               fontWeight: 700,
-              color: '#E8ECF8',
+              color: '#E8EDF4',
               lineHeight: 1.25,
               margin: 0,
               maxWidth: 980,

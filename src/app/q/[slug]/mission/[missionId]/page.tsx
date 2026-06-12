@@ -13,9 +13,9 @@ interface PageProps {
 
 const STATUS_META: Record<string, { label: string; color: string }> = {
   proposed:        { label: 'Proposed',         color: '#8A94B0' },
-  building:        { label: 'Building',          color: '#4D9FFF' },
+  building:        { label: 'Building',          color: '#5AC8FF' },
   landing_claimed: { label: 'Landing Claimed',   color: '#F5C542' },
-  landed:          { label: 'Landed',            color: '#3DDC97' },
+  landed:          { label: 'Landed',            color: '#2BE36C' },
 }
 
 export default async function MissionPage({ params }: PageProps) {
@@ -63,13 +63,13 @@ export default async function MissionPage({ params }: PageProps) {
     <div className="max-w-3xl mx-auto px-4 py-8">
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 text-sm text-[#8A94B0] mb-6">
-        <Link href="/" className="hover:text-[#E8ECF8]">Feed</Link>
+        <Link href="/" className="hover:text-[#E8EDF4]">Feed</Link>
         <span>/</span>
-        <Link href={`/q/${question.slug}`} className="hover:text-[#E8ECF8] truncate max-w-xs">
+        <Link href={`/q/${question.slug}`} className="hover:text-[#E8EDF4] truncate max-w-xs">
           {question.title}
         </Link>
         <span>/</span>
-        <span className="text-[#E8ECF8] truncate max-w-xs">{m.title}</span>
+        <span className="text-[#E8EDF4] truncate max-w-xs">{m.title}</span>
       </div>
 
       {/* Status + Score */}
@@ -83,18 +83,18 @@ export default async function MissionPage({ params }: PageProps) {
               {statusMeta.label.toUpperCase()}
             </span>
             {isLanded && (
-              <span className="text-xs text-[#3DDC97]">
+              <span className="text-xs text-[#2BE36C]">
                 Landed {m.landed_at ? new Date(m.landed_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : ''}
               </span>
             )}
           </div>
-          <h1 className="font-heading font-bold text-2xl text-[#E8ECF8] leading-snug">
+          <h1 className="font-heading font-bold text-2xl text-[#E8EDF4] leading-snug">
             {m.title}
           </h1>
           {author && (
             <p className="mt-1 text-sm text-[#8A94B0] flex items-center gap-3">
               by{' '}
-              <Link href={`/u/${author.handle}`} className="text-[#4D9FFF] hover:text-[#E8ECF8]">
+              <Link href={`/u/${author.handle}`} className="text-[#5AC8FF] hover:text-[#E8EDF4]">
                 @{author.handle}
               </Link>
               <ReportButton targetType="mission" targetId={m.id} />
@@ -116,7 +116,7 @@ export default async function MissionPage({ params }: PageProps) {
           {isLanded && (
             <span
               className="absolute -top-1 -right-1 text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center"
-              style={{ background: '#F5C542', color: '#0A0E1A' }}
+              style={{ background: '#F5C542', color: '#070A0F' }}
             >
               ✓
             </span>
@@ -125,17 +125,17 @@ export default async function MissionPage({ params }: PageProps) {
       </div>
 
       {/* Body */}
-      <div className="bg-[#111729] border border-[#1E2740] rounded-xl p-6 mb-6 prose-custom">
-        <div className="text-[#E8ECF8] text-sm leading-relaxed whitespace-pre-wrap">
+      <div className="bg-[#0E141B] border border-[#1B2531] rounded-xl p-6 mb-6 prose-custom">
+        <div className="text-[#E8EDF4] text-sm leading-relaxed whitespace-pre-wrap">
           {m.body}
         </div>
       </div>
 
       {/* Claim Landing (author-only, eligible status) */}
       {canClaim && (
-        <div className="flex items-center justify-between gap-4 bg-[#111729] border border-[#3DDC9740] rounded-xl p-4 mb-6">
+        <div className="flex items-center justify-between gap-4 bg-[#0E141B] border border-[#2BE36C40] rounded-xl p-4 mb-6">
           <div>
-            <p className="text-sm font-semibold text-[#E8ECF8]">Ready to claim landing?</p>
+            <p className="text-sm font-semibold text-[#E8EDF4]">Ready to claim landing?</p>
             <p className="text-xs text-[#8A94B0] mt-0.5">
               Built and verified this in the real world? Submit proof — mods review and your score goes ×3.
             </p>
@@ -146,16 +146,16 @@ export default async function MissionPage({ params }: PageProps) {
 
       {/* Landing proof */}
       {isLanded && m.proof_url && (
-        <div className="bg-[#3DDC9710] border border-[#3DDC9740] rounded-xl p-4 mb-6">
-          <p className="text-xs text-[#3DDC97] font-mono mb-1">LANDING PROOF</p>
+        <div className="bg-[#2BE36C10] border border-[#2BE36C40] rounded-xl p-4 mb-6">
+          <p className="text-xs text-[#2BE36C] font-mono mb-1">LANDING PROOF</p>
           {m.proof_note && (
-            <p className="text-sm text-[#E8ECF8] mb-2">{m.proof_note}</p>
+            <p className="text-sm text-[#E8EDF4] mb-2">{m.proof_note}</p>
           )}
           <a
             href={m.proof_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-[#4D9FFF] hover:underline break-all"
+            className="text-sm text-[#5AC8FF] hover:underline break-all"
           >
             {m.proof_url}
           </a>
@@ -163,8 +163,8 @@ export default async function MissionPage({ params }: PageProps) {
       )}
 
       {/* Vote rigor */}
-      <div className="bg-[#111729] border border-[#1E2740] rounded-xl p-4 mb-6">
-        <p className="text-sm font-medium text-[#E8ECF8] mb-3">
+      <div className="bg-[#0E141B] border border-[#1B2531] rounded-xl p-4 mb-6">
+        <p className="text-sm font-medium text-[#E8EDF4] mb-3">
           How rigorous is this solution?
         </p>
         <VoteScale
@@ -188,7 +188,7 @@ export default async function MissionPage({ params }: PageProps) {
       {/* Back link */}
       <Link
         href={`/q/${question.slug}`}
-        className="text-sm text-[#8A94B0] hover:text-[#E8ECF8] transition-colors"
+        className="text-sm text-[#8A94B0] hover:text-[#E8EDF4] transition-colors"
       >
         ← Back to question
       </Link>

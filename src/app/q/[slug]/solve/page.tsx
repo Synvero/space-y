@@ -30,7 +30,7 @@ export default async function SolvePage({ params }: PageProps) {
     <div className="max-w-3xl mx-auto px-4 py-8">
       <div className="mb-6">
         <p className="text-[#8A94B0] text-sm mb-1">Proposing solution for</p>
-        <h1 className="font-heading font-bold text-xl text-[#E8ECF8]">{q.title}</h1>
+        <h1 className="font-heading font-bold text-xl text-[#E8EDF4]">{q.title}</h1>
       </div>
       <MissionEditor questionId={q.id} questionSlug={q.slug} />
     </div>

@@ -21,8 +21,8 @@ export function ScoreDial({ score, voteCount, size = 'md', label }: ScoreDialPro
     <div
       className={`${s.container} rounded-full border-2 flex flex-col items-center justify-center shrink-0`}
       style={{
-        borderColor: calibrating ? '#1E2740' : '#F5C542',
-        backgroundColor: calibrating ? '#111729' : '#F5C54210',
+        borderColor: calibrating ? '#1B2531' : '#F5C542',
+        backgroundColor: calibrating ? '#0E141B' : '#F5C54210',
       }}
     >
       {calibrating ? (

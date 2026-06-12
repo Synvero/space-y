@@ -107,21 +107,21 @@ export function MarketWidget({ marketId, questionText, status, resolvesAt, outco
   const isOpen = status === 'open'
 
   return (
-    <div className="bg-[#111729] border border-[#4D9FFF]/30 rounded-xl overflow-hidden">
+    <div className="bg-[#0E141B] border border-[#5AC8FF]/30 rounded-xl overflow-hidden">
       {/* Header */}
-      <div className="px-4 pt-4 pb-3 border-b border-[#1E2740]">
+      <div className="px-4 pt-4 pb-3 border-b border-[#1B2531]">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-xs text-[#4D9FFF] font-mono font-bold">PREDICTION MARKET</span>
+          <span className="text-xs text-[#5AC8FF] font-mono font-bold">PREDICTION MARKET</span>
           <span className="text-xs text-[#8A94B0] font-mono">{isResolved ? 'CLOSED' : countdown}</span>
         </div>
-        <p className="text-sm text-[#E8ECF8]">{questionText}</p>
+        <p className="text-sm text-[#E8EDF4]">{questionText}</p>
       </div>
 
       {/* Pool bars */}
       <div className="px-4 py-3">
         <div className="flex h-3 rounded-full overflow-hidden mb-2">
           <div
-            className="bg-[#3DDC97] transition-all duration-500"
+            className="bg-[#2BE36C] transition-all duration-500"
             style={{ width: `${yesPercent}%` }}
           />
           <div
@@ -130,7 +130,7 @@ export function MarketWidget({ marketId, questionText, status, resolvesAt, outco
           />
         </div>
         <div className="flex justify-between flex-wrap gap-y-1 text-xs font-mono">
-          <span className="text-[#3DDC97]">YES {yesPercent}% · {pool.yesPool.toLocaleString()} ⛽</span>
+          <span className="text-[#2BE36C]">YES {yesPercent}% · {pool.yesPool.toLocaleString()} ⛽</span>
           <span className="text-[#FF5470]">NO {noPercent}% · {pool.noPool.toLocaleString()} ⛽</span>
         </div>
       </div>
@@ -140,7 +140,7 @@ export function MarketWidget({ marketId, questionText, status, resolvesAt, outco
         <div className="px-4 pb-4">
           <div
             className={`text-center py-2 rounded-lg font-mono font-bold text-sm ${
-              outcome ? 'bg-[#3DDC97]/10 text-[#3DDC97] border border-[#3DDC97]/30' : 'bg-[#FF5470]/10 text-[#FF5470] border border-[#FF5470]/30'
+              outcome ? 'bg-[#2BE36C]/10 text-[#2BE36C] border border-[#2BE36C]/30' : 'bg-[#FF5470]/10 text-[#FF5470] border border-[#FF5470]/30'
             }`}
           >
             RESOLVED {outcome ? 'YES' : 'NO'}
@@ -153,7 +153,7 @@ export function MarketWidget({ marketId, questionText, status, resolvesAt, outco
         <div className="px-4 pb-3">
           <p className="text-xs text-[#8A94B0] mb-1">Your position</p>
           <div className="flex gap-3 text-xs font-mono">
-            {pool.userYes > 0 && <span className="text-[#3DDC97]">{pool.userYes} ⛽ YES</span>}
+            {pool.userYes > 0 && <span className="text-[#2BE36C]">{pool.userYes} ⛽ YES</span>}
             {pool.userNo > 0 && <span className="text-[#FF5470]">{pool.userNo} ⛽ NO</span>}
           </div>
         </div>
@@ -162,13 +162,13 @@ export function MarketWidget({ marketId, questionText, status, resolvesAt, outco
       {/* Stake form */}
       {isOpen && (
         <div className="px-4 pb-4 space-y-3">
-          <div className="border-t border-[#1E2740] pt-3">
+          <div className="border-t border-[#1B2531] pt-3">
             {/* Side picker */}
             <div className="flex gap-2 mb-3">
               <button
                 onClick={() => setSide(true)}
                 className={`flex-1 py-1.5 rounded-lg text-sm font-semibold transition-all border ${
-                  side ? 'bg-[#3DDC97]/15 text-[#3DDC97] border-[#3DDC97]/50' : 'text-[#8A94B0] border-[#1E2740] hover:border-[#3DDC97]/30'
+                  side ? 'bg-[#2BE36C]/15 text-[#2BE36C] border-[#2BE36C]/50' : 'text-[#8A94B0] border-[#1B2531] hover:border-[#2BE36C]/30'
                 }`}
               >
                 YES
@@ -176,7 +176,7 @@ export function MarketWidget({ marketId, questionText, status, resolvesAt, outco
               <button
                 onClick={() => setSide(false)}
                 className={`flex-1 py-1.5 rounded-lg text-sm font-semibold transition-all border ${
-                  !side ? 'bg-[#FF5470]/15 text-[#FF5470] border-[#FF5470]/50' : 'text-[#8A94B0] border-[#1E2740] hover:border-[#FF5470]/30'
+                  !side ? 'bg-[#FF5470]/15 text-[#FF5470] border-[#FF5470]/50' : 'text-[#8A94B0] border-[#1B2531] hover:border-[#FF5470]/30'
                 }`}
               >
                 NO
@@ -191,7 +191,7 @@ export function MarketWidget({ marketId, questionText, status, resolvesAt, outco
                 max={500}
                 value={amount}
                 onChange={e => setAmount(Math.max(0, parseInt(e.target.value) || 0))}
-                className="flex-1 bg-[#0A0E1A] border border-[#1E2740] rounded-lg px-3 py-1.5 text-sm font-mono text-[#E8ECF8] focus:outline-none focus:border-[#4D9FFF]/50"
+                className="flex-1 bg-[#070A0F] border border-[#1B2531] rounded-lg px-3 py-1.5 text-sm font-mono text-[#E8EDF4] focus:outline-none focus:border-[#5AC8FF]/50"
               />
               <span className="flex items-center text-sm text-[#8A94B0]">⛽</span>
             </div>
@@ -203,7 +203,7 @@ export function MarketWidget({ marketId, questionText, status, resolvesAt, outco
                   key={v}
                   onClick={() => setAmount(v)}
                   className={`flex-1 py-1 rounded text-xs font-mono transition-all border ${
-                    amount === v ? 'bg-[#4D9FFF]/15 text-[#4D9FFF] border-[#4D9FFF]/40' : 'text-[#8A94B0] border-[#1E2740] hover:border-[#4D9FFF]/30'
+                    amount === v ? 'bg-[#5AC8FF]/15 text-[#5AC8FF] border-[#5AC8FF]/40' : 'text-[#8A94B0] border-[#1B2531] hover:border-[#5AC8FF]/30'
                   }`}
                 >
                   {v}
@@ -218,12 +218,12 @@ export function MarketWidget({ marketId, questionText, status, resolvesAt, outco
             </div>
 
             {error && <p className="text-xs text-[#FF5470] mb-2">{error}</p>}
-            {success && <p className="text-xs text-[#3DDC97] mb-2">{success}</p>}
+            {success && <p className="text-xs text-[#2BE36C] mb-2">{success}</p>}
 
             <button
               onClick={handleStake}
               disabled={loading || amount < 10}
-              className="w-full py-2 rounded-lg text-sm font-semibold bg-[#4D9FFF] hover:bg-[#6DB5FF] text-[#0A0E1A] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full py-2 rounded-lg text-sm font-semibold bg-[#5AC8FF] hover:bg-[#82D4FF] text-[#070A0F] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? 'Launching…' : `Stake ${amount} ⛽ on ${side ? 'YES' : 'NO'}`}
             </button>

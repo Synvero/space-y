@@ -57,8 +57,8 @@ export function ReportButton({ targetType, targetId }: ReportButtonProps) {
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
           onClick={e => { if (e.target === e.currentTarget) setOpen(false) }}
         >
-          <div className="bg-[#111729] border border-[#1E2740] rounded-2xl p-6 w-full max-w-sm">
-            <h2 className="font-heading font-semibold text-[#E8ECF8] mb-1">Report</h2>
+          <div className="bg-[#0E141B] border border-[#1B2531] rounded-2xl p-6 w-full max-w-sm">
+            <h2 className="font-heading font-semibold text-[#E8EDF4] mb-1">Report</h2>
             <p className="text-xs text-[#8A94B0] mb-4">
               Tell us what rule this breaks. Mods review every report.
             </p>
@@ -69,14 +69,14 @@ export function ReportButton({ targetType, targetId }: ReportButtonProps) {
                 rows={3}
                 maxLength={500}
                 placeholder="Describe the issue..."
-                className="w-full bg-[#0A0E1A] border border-[#1E2740] rounded-lg px-3 py-2 text-sm text-[#E8ECF8] placeholder-[#8A94B0]/50 focus:outline-none focus:border-[#FF5470]/50 resize-none"
+                className="w-full bg-[#070A0F] border border-[#1B2531] rounded-lg px-3 py-2 text-sm text-[#E8EDF4] placeholder-[#8A94B0]/50 focus:outline-none focus:border-[#FF5470]/50 resize-none"
               />
               {error && <p className="text-xs text-[#FF5470]">{error}</p>}
               <div className="flex gap-2">
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  className="flex-1 py-2 rounded-lg text-sm border border-[#1E2740] text-[#8A94B0] hover:text-[#E8ECF8] transition-colors"
+                  className="flex-1 py-2 rounded-lg text-sm border border-[#1B2531] text-[#8A94B0] hover:text-[#E8EDF4] transition-colors"
                 >
                   Cancel
                 </button>

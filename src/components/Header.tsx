@@ -66,7 +66,7 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#1E2740] bg-[#0A0E1A]/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-[#1B2531] bg-[#070A0F]/90 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 h-14 flex items-center gap-4">
         {/* Logo */}
         <Link href="/" className="shrink-0">
@@ -79,7 +79,7 @@ export function Header() {
         {/* Launch CTA */}
         <Link
           href="/launch"
-          className="hidden sm:flex items-center bg-[#FF6B2C] hover:bg-[#FF8A52] text-white font-semibold rounded-lg px-4 py-2 text-sm transition-colors"
+          className="hidden sm:flex items-center cta-glow bg-[#2BE36C] hover:bg-[#5AF093] text-[#04110A] font-semibold rounded-lg px-4 py-2 text-sm transition-colors"
         >
           Launch a Why
         </Link>
@@ -88,49 +88,49 @@ export function Header() {
         {profile ? (
           <DropdownMenu>
             <DropdownMenuTrigger
-              className="flex items-center gap-2 text-sm text-[#E8ECF8] hover:text-white transition-colors"
+              className="flex items-center gap-2 text-sm text-[#E8EDF4] hover:text-white transition-colors"
               aria-label="User menu"
             >
               <span className="font-mono text-[#F5C542] text-xs">
                 {profile.fuel.toLocaleString()} ⛽
               </span>
-              <span className="w-8 h-8 rounded-full bg-[#1E2740] border border-[#FF6B2C]/40 flex items-center justify-center text-xs font-semibold">
+              <span className="w-8 h-8 rounded-full bg-[#1B2531] border border-[#2BE36C]/40 flex items-center justify-center text-xs font-semibold">
                 {profile.handle[0].toUpperCase()}
               </span>
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="end"
-              className="bg-[#111729] border-[#1E2740] text-[#E8ECF8] w-52"
+              className="bg-[#0E141B] border-[#1B2531] text-[#E8EDF4] w-52"
             >
               <div className="px-2 py-1.5 text-xs text-[#8A94B0]">
                 @{profile.handle}
               </div>
-              <DropdownMenuSeparator className="bg-[#1E2740]" />
+              <DropdownMenuSeparator className="bg-[#1B2531]" />
               <DropdownMenuItem
-                className="cursor-pointer hover:bg-[#1E2740] focus:bg-[#1E2740]"
+                className="cursor-pointer hover:bg-[#1B2531] focus:bg-[#1B2531]"
                 onClick={handleCheckin}
                 disabled={checkinPending}
               >
                 {checkinMsg ?? 'Daily Check-in (+25 ⛽)'}
               </DropdownMenuItem>
-              <DropdownMenuSeparator className="bg-[#1E2740]" />
-              <DropdownMenuItem className="cursor-pointer hover:bg-[#1E2740] focus:bg-[#1E2740] p-0">
+              <DropdownMenuSeparator className="bg-[#1B2531]" />
+              <DropdownMenuItem className="cursor-pointer hover:bg-[#1B2531] focus:bg-[#1B2531] p-0">
                 <Link href={`/u/${profile.handle}`} className="flex w-full px-1.5 py-1">My Profile</Link>
               </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer hover:bg-[#1E2740] focus:bg-[#1E2740] p-0">
+              <DropdownMenuItem className="cursor-pointer hover:bg-[#1B2531] focus:bg-[#1B2531] p-0">
                 <Link href="/hangar" className="flex w-full px-1.5 py-1">Hangar</Link>
               </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer hover:bg-[#1E2740] focus:bg-[#1E2740] p-0">
+              <DropdownMenuItem className="cursor-pointer hover:bg-[#1B2531] focus:bg-[#1B2531] p-0">
                 <Link href="/leaderboard" className="flex w-full px-1.5 py-1">Leaderboard</Link>
               </DropdownMenuItem>
               {profile.role !== 'crew' && (
-                <DropdownMenuItem className="cursor-pointer hover:bg-[#1E2740] focus:bg-[#1E2740] p-0">
+                <DropdownMenuItem className="cursor-pointer hover:bg-[#1B2531] focus:bg-[#1B2531] p-0">
                   <Link href="/admin" className="flex w-full px-1.5 py-1">Admin</Link>
                 </DropdownMenuItem>
               )}
-              <DropdownMenuSeparator className="bg-[#1E2740]" />
+              <DropdownMenuSeparator className="bg-[#1B2531]" />
               <DropdownMenuItem
-                className="cursor-pointer text-[#FF5470] hover:bg-[#1E2740] focus:bg-[#1E2740]"
+                className="cursor-pointer text-[#FF5470] hover:bg-[#1B2531] focus:bg-[#1B2531]"
                 onClick={handleSignOut}
               >
                 Sign Out
@@ -140,7 +140,7 @@ export function Header() {
         ) : (
           <Link
             href="/auth/login"
-            className="border border-[#1E2740] text-[#E8ECF8] hover:bg-[#1E2740] text-sm px-3 py-1.5 rounded-lg transition-colors"
+            className="border border-[#1B2531] text-[#E8EDF4] hover:bg-[#1B2531] text-sm px-3 py-1.5 rounded-lg transition-colors"
           >
             Sign In
           </Link>

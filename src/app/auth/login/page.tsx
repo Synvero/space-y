@@ -45,21 +45,21 @@ export default function LoginPage() {
         </div>
 
         {sent ? (
-          <div className="bg-[#111729] border border-[#1E2740] rounded-xl p-6 text-center">
+          <div className="bg-[#0E141B] border border-[#1B2531] rounded-xl p-6 text-center">
             <div className="text-4xl mb-3">🚀</div>
             <h2 className="font-heading font-semibold text-lg mb-2">Check your inbox</h2>
             <p className="text-[#8A94B0] text-sm">
-              We sent a magic link to <strong className="text-[#E8ECF8]">{email}</strong>.
+              We sent a magic link to <strong className="text-[#E8EDF4]">{email}</strong>.
               Click it to join the crew.
             </p>
           </div>
         ) : (
           <form
             onSubmit={handleSubmit}
-            className="bg-[#111729] border border-[#1E2740] rounded-xl p-6 space-y-4"
+            className="bg-[#0E141B] border border-[#1B2531] rounded-xl p-6 space-y-4"
           >
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-[#E8ECF8] text-sm">
+              <Label htmlFor="email" className="text-[#E8EDF4] text-sm">
                 Email
               </Label>
               <Input
@@ -69,7 +69,7 @@ export default function LoginPage() {
                 onChange={e => setEmail(e.target.value)}
                 placeholder="crew@example.com"
                 required
-                className="bg-[#0A0E1A] border-[#1E2740] text-[#E8ECF8] placeholder:text-[#8A94B0]"
+                className="bg-[#070A0F] border-[#1B2531] text-[#E8EDF4] placeholder:text-[#8A94B0]"
               />
             </div>
 
@@ -80,7 +80,7 @@ export default function LoginPage() {
             <Button
               type="submit"
               disabled={pending}
-              className="w-full bg-[#FF6B2C] hover:bg-[#FF8A52] text-white font-semibold"
+              className="w-full bg-[#2BE36C] hover:bg-[#5AF093] text-[#04110A] font-semibold"
             >
               {pending ? 'Sending…' : 'Send Magic Link'}
             </Button>

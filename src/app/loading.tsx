@@ -1,6 +1,6 @@
 function SkeletonCard() {
   return (
-    <div className="bg-[#111729] border border-[#1E2740] rounded-xl p-4">
+    <div className="bg-[#0E141B] border border-[#1B2531] rounded-xl p-4">
       <div className="flex items-start gap-3">
         <div className="skeleton w-10 h-10 rounded-full shrink-0" />
         <div className="flex-1 space-y-2 min-w-0">

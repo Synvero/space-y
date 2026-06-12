@@ -69,7 +69,7 @@ export default function AboutPage() {
     <div className="max-w-3xl mx-auto px-4 py-12">
       {/* Manifesto */}
       <section className="mb-16 text-center">
-        <h1 className="font-heading font-bold text-4xl sm:text-5xl text-[#E8ECF8] mb-6 leading-tight">
+        <h1 className="font-heading font-bold text-4xl sm:text-5xl text-[#E8EDF4] mb-6 leading-tight">
           Every great thing started<br /> as a ridiculous question.
         </h1>
         <p className="text-lg text-[#8A94B0] leading-relaxed max-w-xl mx-auto mb-8">
@@ -80,7 +80,7 @@ export default function AboutPage() {
         </p>
         <Link
           href="/launch"
-          className="inline-flex bg-[#FF6B2C] hover:bg-[#FF8A52] text-white font-semibold px-8 py-3 rounded-xl text-lg transition-colors"
+          className="inline-flex bg-[#2BE36C] hover:bg-[#5AF093] text-[#04110A] font-semibold px-8 py-3 rounded-xl text-lg transition-colors"
         >
           Launch a Why
         </Link>
@@ -88,12 +88,12 @@ export default function AboutPage() {
 
       {/* How it works */}
       <section className="mb-16">
-        <h2 className="font-heading font-bold text-2xl text-[#E8ECF8] mb-8">How it works</h2>
+        <h2 className="font-heading font-bold text-2xl text-[#E8EDF4] mb-8">How it works</h2>
         <div className="grid sm:grid-cols-2 gap-4">
           {HOW_IT_WORKS.map(item => (
-            <div key={item.step} className="bg-[#111729] border border-[#1E2740] rounded-xl p-5">
-              <p className="font-mono text-[#FF6B2C] text-sm font-bold mb-2">{item.step}</p>
-              <h3 className="font-heading font-semibold text-[#E8ECF8] text-lg mb-2">{item.title}</h3>
+            <div key={item.step} className="bg-[#0E141B] border border-[#1B2531] rounded-xl p-5">
+              <p className="font-mono text-[#2BE36C] text-sm font-bold mb-2">{item.step}</p>
+              <h3 className="font-heading font-semibold text-[#E8EDF4] text-lg mb-2">{item.title}</h3>
               <p className="text-sm text-[#8A94B0] leading-relaxed">{item.body}</p>
             </div>
           ))}
@@ -102,17 +102,17 @@ export default function AboutPage() {
 
       {/* Orbit system */}
       <section className="mb-16">
-        <h2 className="font-heading font-bold text-2xl text-[#E8ECF8] mb-4">The Orbit System</h2>
+        <h2 className="font-heading font-bold text-2xl text-[#E8EDF4] mb-4">The Orbit System</h2>
         <p className="text-[#8A94B0] mb-4">
           Questions orbit based on their Absurdity score, set by crew votes after 5 votes.
           The higher the orbit, the more ridiculous the question.
         </p>
         <div className="grid grid-cols-5 gap-2">
           {[
-            { label: 'LEO', color: '#4D9FFF', desc: 'Barely weird' },
-            { label: 'GEO', color: '#3DDC97', desc: 'Getting strange' },
+            { label: 'LEO', color: '#5AC8FF', desc: 'Barely weird' },
+            { label: 'GEO', color: '#2BE36C', desc: 'Getting strange' },
             { label: 'MOON', color: '#F5C542', desc: 'Properly odd' },
-            { label: 'MARS', color: '#FF6B2C', desc: 'Gloriously unhinged' },
+            { label: 'MARS', color: '#2BE36C', desc: 'Gloriously unhinged' },
             { label: 'DEEP', color: '#FF5470', desc: 'Cosmic absurdity' },
           ].map(orbit => (
             <div key={orbit.label} className="text-center">
@@ -130,18 +130,18 @@ export default function AboutPage() {
 
       {/* FAQ */}
       <section>
-        <h2 className="font-heading font-bold text-2xl text-[#E8ECF8] mb-6">FAQ</h2>
+        <h2 className="font-heading font-bold text-2xl text-[#E8EDF4] mb-6">FAQ</h2>
         <div className="space-y-4">
           {FAQ.map(item => (
-            <div key={item.q} className="bg-[#111729] border border-[#1E2740] rounded-xl p-5">
-              <p className="font-semibold text-[#E8ECF8] mb-2">{item.q}</p>
+            <div key={item.q} className="bg-[#0E141B] border border-[#1B2531] rounded-xl p-5">
+              <p className="font-semibold text-[#E8EDF4] mb-2">{item.q}</p>
               <p className="text-sm text-[#8A94B0] leading-relaxed">{item.a}</p>
             </div>
           ))}
         </div>
 
         <div className="mt-8 text-center">
-          <Link href="/rules" className="text-sm text-[#4D9FFF] hover:underline">
+          <Link href="/rules" className="text-sm text-[#5AC8FF] hover:underline">
             Read the full rules
           </Link>
         </div>

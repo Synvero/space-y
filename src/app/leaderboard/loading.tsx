@@ -7,7 +7,7 @@ export default function Loading() {
         {[1, 2, 3, 4, 5].map(i => (
           <div
             key={i}
-            className="bg-[#111729] border border-[#1E2740] rounded-xl px-4 py-3 flex items-center gap-4"
+            className="bg-[#0E141B] border border-[#1B2531] rounded-xl px-4 py-3 flex items-center gap-4"
           >
             <div className="skeleton w-6 h-4 shrink-0" />
             <div className="skeleton w-8 h-8 rounded-full shrink-0" />

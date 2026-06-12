@@ -61,10 +61,10 @@ export default async function HangarPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
-      <h1 className="font-heading font-bold text-2xl text-[#E8ECF8] mb-6">Hangar</h1>
+      <h1 className="font-heading font-bold text-2xl text-[#E8EDF4] mb-6">Hangar</h1>
 
       {/* Balance card */}
-      <div className="bg-[#111729] border border-[#1E2740] rounded-xl p-6 mb-6">
+      <div className="bg-[#0E141B] border border-[#1B2531] rounded-xl p-6 mb-6">
         <div className="flex items-center justify-between">
           <div>
             <p className="text-xs text-[#8A94B0] mb-1">Fuel Balance</p>
@@ -74,15 +74,15 @@ export default async function HangarPage() {
           </div>
           <div className="text-right">
             <p className="text-xs text-[#8A94B0] mb-1">Reputation</p>
-            <p className="font-mono text-2xl font-bold text-[#E8ECF8]">
+            <p className="font-mono text-2xl font-bold text-[#E8EDF4]">
               {profile.reputation}
             </p>
           </div>
         </div>
 
-        <div className="mt-4 pt-4 border-t border-[#1E2740]">
+        <div className="mt-4 pt-4 border-t border-[#1B2531]">
           {checkedInToday ? (
-            <p className="text-xs text-[#3DDC97]">Checked in today. +25 ⛽ earned.</p>
+            <p className="text-xs text-[#2BE36C]">Checked in today. +25 ⛽ earned.</p>
           ) : (
             <CheckinButtonClient />
           )}
@@ -92,7 +92,7 @@ export default async function HangarPage() {
       {/* Active stakes */}
       {activeStakes && activeStakes.length > 0 && (
         <section className="mb-6">
-          <h2 className="font-heading font-semibold text-[#E8ECF8] mb-3">Stakes</h2>
+          <h2 className="font-heading font-semibold text-[#E8EDF4] mb-3">Stakes</h2>
           <div className="space-y-2">
             {activeStakes.map(s => {
               const market = (s as unknown as {
@@ -108,25 +108,25 @@ export default async function HangarPage() {
               return (
                 <div
                   key={s.id}
-                  className="bg-[#111729] border border-[#1E2740] rounded-xl p-3 flex items-center gap-3"
+                  className="bg-[#0E141B] border border-[#1B2531] rounded-xl p-3 flex items-center gap-3"
                 >
                   <span
                     className={`font-mono text-xs font-bold px-2 py-0.5 rounded border shrink-0 ${
                       s.side
-                        ? 'text-[#3DDC97] border-[#3DDC97]/40'
+                        ? 'text-[#2BE36C] border-[#2BE36C]/40'
                         : 'text-[#FF5470] border-[#FF5470]/40'
                     }`}
                   >
                     {s.side ? 'YES' : 'NO'}
                   </span>
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs text-[#E8ECF8] truncate">
+                    <p className="text-xs text-[#E8EDF4] truncate">
                       {market?.question_text ?? 'Unknown market'}
                     </p>
                     {market?.question?.slug && (
                       <Link
                         href={`/q/${market.question.slug}`}
-                        className="text-xs text-[#4D9FFF] hover:underline"
+                        className="text-xs text-[#5AC8FF] hover:underline"
                       >
                         View question
                       </Link>
@@ -135,7 +135,7 @@ export default async function HangarPage() {
                   <div className="text-right shrink-0">
                     <p className="font-mono text-sm text-[#F5C542]">{s.amount} ⛽</p>
                     {isResolved && (
-                      <p className={`text-xs font-mono ${won ? 'text-[#3DDC97]' : 'text-[#FF5470]'}`}>
+                      <p className={`text-xs font-mono ${won ? 'text-[#2BE36C]' : 'text-[#FF5470]'}`}>
                         {won ? `+${(s.payout ?? 0) - s.amount}` : `−${s.amount}`}
                       </p>
                     )}
@@ -149,21 +149,21 @@ export default async function HangarPage() {
 
       {/* Ledger history */}
       <section>
-        <h2 className="font-heading font-semibold text-[#E8ECF8] mb-3">Fuel History</h2>
+        <h2 className="font-heading font-semibold text-[#E8EDF4] mb-3">Fuel History</h2>
         {!ledger || ledger.length === 0 ? (
-          <div className="bg-[#111729] border border-[#1E2740] rounded-xl p-6 text-center">
-            <p className="text-[#E8ECF8] text-sm font-medium mb-1">No fuel transactions yet</p>
+          <div className="bg-[#0E141B] border border-[#1B2531] rounded-xl p-6 text-center">
+            <p className="text-[#E8EDF4] text-sm font-medium mb-1">No fuel transactions yet</p>
             <p className="text-[#8A94B0] text-xs">Check in daily and stake on markets to fill your ledger.</p>
           </div>
         ) : (
-          <div className="divide-y divide-[#1E2740]">
+          <div className="divide-y divide-[#1B2531]">
             {ledger.map(entry => (
               <div
                 key={entry.id}
                 className="flex items-center justify-between py-3"
               >
                 <div>
-                  <p className="text-sm text-[#E8ECF8]">{REASON_LABELS[entry.reason] ?? entry.reason}</p>
+                  <p className="text-sm text-[#E8EDF4]">{REASON_LABELS[entry.reason] ?? entry.reason}</p>
                   <p className="text-xs text-[#8A94B0]">
                     {new Date(entry.created_at).toLocaleDateString('en-US', {
                       month: 'short', day: 'numeric', year: 'numeric',
@@ -172,7 +172,7 @@ export default async function HangarPage() {
                 </div>
                 <span
                   className={`font-mono text-sm font-bold ${
-                    entry.delta > 0 ? 'text-[#3DDC97]' : 'text-[#FF5470]'
+                    entry.delta > 0 ? 'text-[#2BE36C]' : 'text-[#FF5470]'
                   }`}
                 >
                   {entry.delta > 0 ? '+' : ''}{entry.delta} ⛽
