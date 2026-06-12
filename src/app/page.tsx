@@ -1,17 +1,28 @@
-import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
+import { QuestionCard } from '@/components/QuestionCard'
+import { FeedTabs } from '@/components/FeedTabs'
 import { Logo } from '@/components/Logo'
+import Link from 'next/link'
+import type { Orbit } from '@/lib/scoring'
 
 export const metadata = {
   title: 'SPACE Y? — Absurd Questions, Rigorous Answers',
 }
 
-export default async function HomePage() {
+const ORBITS = ['leo', 'geo', 'moon', 'mars', 'deep_space']
+
+interface PageProps {
+  searchParams: Promise<{ tab?: string; orbit?: string }>
+}
+
+export default async function HomePage({ searchParams }: PageProps) {
+  const { tab = 'hot', orbit } = await searchParams
+
   let questions: Array<{
     id: string
     slug: string
     title: string
-    orbit: string
+    orbit: Orbit | string
     absurdity: number | null
     vote_count: number
     status: string
@@ -20,36 +31,35 @@ export default async function HomePage() {
 
   try {
     const supabase = await createClient()
-    const { data } = await supabase
+    let query = supabase
       .from('questions')
       .select('id, slug, title, orbit, absurdity, vote_count, status, created_at')
       .neq('status', 'removed')
-      .order('created_at', { ascending: false })
-      .limit(20)
+
+    if (orbit && ORBITS.includes(orbit)) {
+      query = query.eq('orbit', orbit)
+    }
+    if (tab === 'landed') {
+      query = query.eq('status', 'landed')
+    }
+    if (tab === 'top') {
+      query = query.order('vote_count', { ascending: false })
+    } else {
+      query = query.order('created_at', { ascending: false })
+    }
+
+    const { data } = await query.limit(40)
     questions = data ?? []
   } catch {
-    // DB not connected yet — show hero
+    // no env set yet
   }
 
-  const orbitColors: Record<string, string> = {
-    leo: '#8A94B0',
-    geo: '#4D9FFF',
-    moon: '#E8ECF8',
-    mars: '#FF6B2C',
-    deep_space: '#F5C542',
-  }
-
-  const orbitLabels: Record<string, string> = {
-    leo: 'Everyday strange',
-    geo: 'Properly weird',
-    moon: 'Absurd',
-    mars: 'Gloriously absurd',
-    deep_space: 'Civilizational',
-  }
+  const isEmpty = questions.length === 0
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10">
-      {questions.length === 0 ? (
+    <div className="max-w-4xl mx-auto px-4 py-8">
+      {isEmpty && !process.env.NEXT_PUBLIC_SUPABASE_URL ? (
+        // Hero when no DB is connected
         <div className="text-center py-20">
           <Logo size="lg" />
           <p className="mt-6 text-[#8A94B0] text-lg max-w-xl mx-auto leading-relaxed">
@@ -72,47 +82,34 @@ export default async function HomePage() {
           </div>
         </div>
       ) : (
-        <div className="space-y-3">
-          {questions.map(q => (
-            <Link
-              key={q.id}
-              href={`/q/${q.slug}`}
-              className="block bg-[#111729] border border-[#1E2740] rounded-xl p-4 hover:border-[#FF6B2C]/40 hover:shadow-lg hover:shadow-[#FF6B2C]/5 transition-all"
-            >
-              <div className="flex items-start gap-3">
-                <span
-                  className="shrink-0 text-xs px-2 py-0.5 rounded-full border font-mono mt-0.5"
-                  style={{
-                    color: orbitColors[q.orbit] ?? '#8A94B0',
-                    borderColor: `${orbitColors[q.orbit] ?? '#8A94B0'}40`,
-                    backgroundColor: `${orbitColors[q.orbit] ?? '#8A94B0'}10`,
-                  }}
-                >
-                  {q.orbit.replace('_', ' ').toUpperCase()}
-                </span>
-                <div className="flex-1 min-w-0">
-                  <h2 className="text-[#E8ECF8] font-medium leading-snug">{q.title}</h2>
-                  <p className="text-xs text-[#8A94B0] mt-1">
-                    {orbitLabels[q.orbit]}
-                    {q.absurdity != null && (
-                      <span className="ml-2 font-mono text-[#F5C542]">
-                        {q.absurdity.toFixed(1)} absurdity
-                      </span>
-                    )}
-                    {q.absurdity == null && q.vote_count < 5 && (
-                      <span className="ml-2 text-[#8A94B0]">calibrating…</span>
-                    )}
-                  </p>
-                </div>
-                {q.status === 'landed' && (
-                  <span className="shrink-0 text-[#F5C542] text-xs font-semibold border border-[#F5C542]/40 rounded-full px-2 py-0.5">
-                    LANDED
-                  </span>
-                )}
-              </div>
-            </Link>
-          ))}
-        </div>
+        <>
+          <FeedTabs activeTab={tab} activeOrbit={orbit} />
+          {questions.length === 0 ? (
+            <div className="text-center py-16">
+              <p className="text-[#8A94B0]">No questions in this orbit yet.</p>
+              <Link
+                href="/launch"
+                className="mt-4 inline-block bg-[#FF6B2C] hover:bg-[#FF8A52] text-white font-semibold px-6 py-2.5 rounded-lg transition-colors"
+              >
+                Launch the first Why
+              </Link>
+            </div>
+          ) : (
+            <div className="space-y-3 mt-4">
+              {questions.map(q => (
+                <QuestionCard
+                  key={q.id}
+                  slug={q.slug}
+                  title={q.title}
+                  orbit={q.orbit}
+                  absurdity={q.absurdity}
+                  voteCount={q.vote_count}
+                  status={q.status}
+                />
+              ))}
+            </div>
+          )}
+        </>
       )}
     </div>
   )
