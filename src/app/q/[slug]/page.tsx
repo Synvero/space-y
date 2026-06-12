@@ -6,6 +6,7 @@ import { ScoreDial } from '@/components/ScoreDial'
 import { VoteScale } from '@/components/VoteScale'
 import { MissionCard } from '@/components/MissionCard'
 import { MarketWidget } from '@/components/MarketWidget'
+import { PledgeBoard } from '@/components/PledgeBoard'
 import type { Orbit } from '@/lib/scoring'
 
 interface PageProps {
@@ -35,7 +36,7 @@ export default async function QuestionPage({ params }: PageProps) {
 
   if (!question) notFound()
 
-  const [{ data: missions }, { data: market }, { data: comments }] = await Promise.all([
+  const [{ data: missions }, { data: market }, { data: comments }, { data: pledges }, { data: { user } }] = await Promise.all([
     supabase
       .from('missions')
       .select(`
@@ -61,6 +62,17 @@ export default async function QuestionPage({ params }: PageProps) {
       .eq('status', 'visible')
       .order('created_at', { ascending: true })
       .limit(50),
+    supabase
+      .from('pledges')
+      .select(`
+        id, amount_eur, message, created_at, user_id,
+        user:profiles!user_id(handle, display_name)
+      `)
+      .eq('target_type', 'question')
+      .eq('target_id', question.id)
+      .eq('status', 'pledged')
+      .order('created_at', { ascending: false }),
+    supabase.auth.getUser(),
   ])
 
   const author = question.author as unknown as { id: string; handle: string; display_name: string } | null
@@ -135,6 +147,16 @@ export default async function QuestionPage({ params }: PageProps) {
           />
         </div>
       )}
+
+      {/* Pledge Board */}
+      <div className="mb-6">
+        <PledgeBoard
+          targetType="question"
+          targetId={question.id}
+          initialPledges={(pledges ?? []) as any}
+          currentUserId={user?.id ?? null}
+        />
+      </div>
 
       {/* Missions */}
       <div className="mb-6">

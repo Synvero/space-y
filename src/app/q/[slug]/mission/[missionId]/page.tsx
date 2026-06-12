@@ -4,6 +4,7 @@ import { createClient } from '@/lib/supabase/server'
 import { ScoreDial } from '@/components/ScoreDial'
 import { VoteScale } from '@/components/VoteScale'
 import { ProofModal } from '@/components/ProofModal'
+import { PledgeBoard } from '@/components/PledgeBoard'
 
 interface PageProps {
   params: Promise<{ slug: string; missionId: string }>
@@ -20,7 +21,7 @@ export default async function MissionPage({ params }: PageProps) {
   const { slug, missionId } = await params
   const supabase = await createClient()
 
-  const [{ data: mission }, { data: { user } }] = await Promise.all([
+  const [{ data: mission }, { data: { user } }, { data: pledges }] = await Promise.all([
     supabase
       .from('missions')
       .select(`
@@ -32,6 +33,16 @@ export default async function MissionPage({ params }: PageProps) {
       .neq('status', 'removed')
       .single(),
     supabase.auth.getUser(),
+    supabase
+      .from('pledges')
+      .select(`
+        id, amount_eur, message, created_at, user_id,
+        user:profiles!user_id(handle, display_name)
+      `)
+      .eq('target_type', 'mission')
+      .eq('target_id', missionId)
+      .eq('status', 'pledged')
+      .order('created_at', { ascending: false }),
   ])
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -159,6 +170,16 @@ export default async function MissionPage({ params }: PageProps) {
           targetId={m.id}
           dimension="rigor"
           voteCount={m.vote_count}
+        />
+      </div>
+
+      {/* Pledge Board */}
+      <div className="mb-6">
+        <PledgeBoard
+          targetType="mission"
+          targetId={m.id}
+          initialPledges={(pledges ?? []) as any}
+          currentUserId={user?.id ?? null}
         />
       </div>
 
