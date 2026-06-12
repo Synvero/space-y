@@ -5,6 +5,7 @@ import { ScoreDial } from '@/components/ScoreDial'
 import { VoteScale } from '@/components/VoteScale'
 import { ProofModal } from '@/components/ProofModal'
 import { PledgeBoard } from '@/components/PledgeBoard'
+import { ReportButton } from '@/components/ReportButton'
 
 interface PageProps {
   params: Promise<{ slug: string; missionId: string }>
@@ -91,11 +92,12 @@ export default async function MissionPage({ params }: PageProps) {
             {m.title}
           </h1>
           {author && (
-            <p className="mt-1 text-sm text-[#8A94B0]">
+            <p className="mt-1 text-sm text-[#8A94B0] flex items-center gap-3">
               by{' '}
               <Link href={`/u/${author.handle}`} className="text-[#4D9FFF] hover:text-[#E8ECF8]">
                 @{author.handle}
               </Link>
+              <ReportButton targetType="mission" targetId={m.id} />
             </p>
           )}
         </div>

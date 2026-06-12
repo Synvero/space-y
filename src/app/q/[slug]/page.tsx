@@ -7,6 +7,8 @@ import { VoteScale } from '@/components/VoteScale'
 import { MissionCard } from '@/components/MissionCard'
 import { MarketWidget } from '@/components/MarketWidget'
 import { PledgeBoard } from '@/components/PledgeBoard'
+import { ReportButton } from '@/components/ReportButton'
+import { CommentForm } from '@/components/CommentForm'
 import type { Orbit } from '@/lib/scoring'
 
 interface PageProps {
@@ -99,6 +101,7 @@ export default async function QuestionPage({ params }: PageProps) {
             </Link>
           )}
           <span>{new Date(question.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+          <ReportButton targetType="question" targetId={question.id} />
         </div>
 
         {question.body && (
@@ -187,27 +190,31 @@ export default async function QuestionPage({ params }: PageProps) {
       </div>
 
       {/* Comments */}
-      {comments && comments.length > 0 && (
-        <div className="space-y-2">
-          <h3 className="text-sm font-medium text-[#8A94B0]">Comments</h3>
-          {comments.map(c => {
-            const cAuthor = c.author as unknown as { handle: string; display_name: string } | null
-            return (
-              <div key={c.id} className="bg-[#111729] border border-[#1E2740] rounded-lg p-3">
-                <div className="flex items-center gap-2 mb-1.5">
-                  <Link href={`/u/${cAuthor?.handle}`} className="text-xs text-[#4D9FFF] hover:text-[#E8ECF8]">
-                    @{cAuthor?.handle}
-                  </Link>
-                  <span className="text-xs text-[#8A94B0]">
-                    {new Date(c.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                  </span>
+      <div>
+        <h3 className="text-sm font-medium text-[#8A94B0] mb-2">Comments</h3>
+        {comments && comments.length > 0 && (
+          <div className="space-y-2 mb-2">
+            {comments.map(c => {
+              const cAuthor = c.author as unknown as { handle: string; display_name: string } | null
+              return (
+                <div key={c.id} className="bg-[#111729] border border-[#1E2740] rounded-lg p-3">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <Link href={`/u/${cAuthor?.handle}`} className="text-xs text-[#4D9FFF] hover:text-[#E8ECF8]">
+                      @{cAuthor?.handle}
+                    </Link>
+                    <span className="text-xs text-[#8A94B0]">
+                      {new Date(c.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                    </span>
+                    <ReportButton targetType="comment" targetId={c.id} />
+                  </div>
+                  <p className="text-sm text-[#E8ECF8]">{c.body}</p>
                 </div>
-                <p className="text-sm text-[#E8ECF8]">{c.body}</p>
-              </div>
-            )
-          })}
-        </div>
-      )}
+              )
+            })}
+          </div>
+        )}
+        <CommentForm targetType="question" targetId={question.id} />
+      </div>
     </div>
   )
 }
