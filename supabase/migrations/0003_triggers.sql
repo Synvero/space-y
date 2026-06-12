@@ -57,6 +57,7 @@ declare
   v_new_score int;
   v_mission_status text;
   v_author_id uuid;
+  v_scored_bonus_paid boolean;
 begin
   -- get target info from either old or new row
   if TG_OP = 'DELETE' then
@@ -108,7 +109,7 @@ begin
 
     select m.status, m.author_id, m.score, m.scored_bonus_paid,
            q.absurdity
-    into v_mission_status, v_author_id, v_old_score, v_vote_count, v_question_absurdity
+    into v_mission_status, v_author_id, v_old_score, v_scored_bonus_paid, v_question_absurdity
     from public.missions m
     join public.questions q on q.id = m.question_id
     where m.id = v_target_id;
@@ -120,8 +121,8 @@ begin
       * case when v_mission_status = 'landed' then 3 else 1 end
     );
 
-    -- check if this crosses the 5-vote threshold for the first time
-    if v_vote_count = 5 then
+    -- pay the score bonus exactly once, the first time the mission has >=5 votes
+    if v_vote_count >= 5 and not v_scored_bonus_paid then
       -- first scoring: give bonus fuel + rep to author
       update public.missions set
         vote_count = v_vote_count,
