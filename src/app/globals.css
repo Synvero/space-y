@@ -144,6 +144,14 @@
   .starfield::after {
     animation: none;
   }
+  .rocket-trail {
+    animation: none;
+    opacity: 1;
+  }
+  .skeleton {
+    animation: none;
+    background: #1E2740;
+  }
 }
 
 /* Rocket trail animation for Launch */
@@ -155,4 +163,22 @@
 
 .rocket-trail {
   animation: rocket-trail 800ms ease-out forwards;
+}
+
+/* Skeleton loading */
+@keyframes skeleton-shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #111729 25%,
+    #1E2740 50%,
+    #111729 75%
+  );
+  background-size: 800px 100%;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+  border-radius: 6px;
 }

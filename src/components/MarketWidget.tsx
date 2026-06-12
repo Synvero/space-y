@@ -129,7 +129,7 @@ export function MarketWidget({ marketId, questionText, status, resolvesAt, outco
             style={{ width: `${noPercent}%` }}
           />
         </div>
-        <div className="flex justify-between text-xs font-mono">
+        <div className="flex justify-between flex-wrap gap-y-1 text-xs font-mono">
           <span className="text-[#3DDC97]">YES {yesPercent}% · {pool.yesPool.toLocaleString()} ⛽</span>
           <span className="text-[#FF5470]">NO {noPercent}% · {pool.noPool.toLocaleString()} ⛽</span>
         </div>

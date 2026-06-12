@@ -94,7 +94,8 @@ export default async function LeaderboardPage({ searchParams }: PageProps) {
       {/* Table */}
       {rows.length === 0 ? (
         <div className="text-center py-12">
-          <p className="text-[#8A94B0]">No data yet.</p>
+          <p className="text-[#E8ECF8] font-medium mb-1">No crew ranked yet</p>
+          <p className="text-[#8A94B0] text-sm">Rankings appear once missions are voted on.</p>
         </div>
       ) : (
         <div className="space-y-2">

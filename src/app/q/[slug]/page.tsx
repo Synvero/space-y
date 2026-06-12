@@ -203,7 +203,8 @@ export default async function QuestionPage({ params }: PageProps) {
 
         {(!missions || missions.length === 0) ? (
           <div className="bg-[#111729] border border-[#1E2740] rounded-xl p-8 text-center">
-            <p className="text-[#8A94B0]">No missions yet. Be the first to engineer an answer.</p>
+            <p className="text-[#E8ECF8] font-medium mb-1">No missions yet</p>
+            <p className="text-[#8A94B0] text-sm">Engineer a rigorous answer and propose the first solution.</p>
           </div>
         ) : (
           <div className="space-y-3">

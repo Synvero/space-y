@@ -151,7 +151,10 @@ export default async function HangarPage() {
       <section>
         <h2 className="font-heading font-semibold text-[#E8ECF8] mb-3">Fuel History</h2>
         {!ledger || ledger.length === 0 ? (
-          <p className="text-sm text-[#8A94B0]">No transactions yet.</p>
+          <div className="bg-[#111729] border border-[#1E2740] rounded-xl p-6 text-center">
+            <p className="text-[#E8ECF8] text-sm font-medium mb-1">No fuel transactions yet</p>
+            <p className="text-[#8A94B0] text-xs">Check in daily and stake on markets to fill your ledger.</p>
+          </div>
         ) : (
           <div className="divide-y divide-[#1E2740]">
             {ledger.map(entry => (

@@ -86,12 +86,12 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
       </div>
 
       {/* Tab nav */}
-      <div className="flex gap-0 mb-6 border-b border-[#1E2740]">
+      <div className="flex gap-0 mb-6 border-b border-[#1E2740] overflow-x-auto">
         {tabs.map(t => (
           <Link
             key={t.key}
             href={`/admin?tab=${t.key}`}
-            className={`px-4 py-2 text-sm font-medium transition-colors border-b-2 -mb-px ${
+            className={`px-3 sm:px-4 py-2 text-sm font-medium transition-colors border-b-2 -mb-px whitespace-nowrap ${
               tab === t.key
                 ? 'text-[#E8ECF8] border-[#FF6B2C]'
                 : 'text-[#8A94B0] border-transparent hover:text-[#E8ECF8]'

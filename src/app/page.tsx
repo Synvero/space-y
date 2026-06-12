@@ -86,12 +86,16 @@ export default async function HomePage({ searchParams }: PageProps) {
           <FeedTabs activeTab={tab} activeOrbit={orbit} />
           {questions.length === 0 ? (
             <div className="text-center py-16">
-              <p className="text-[#8A94B0]">No questions in this orbit yet.</p>
+              <p className="font-mono text-[#1E2740] text-5xl font-bold mb-4" aria-hidden="true">
+                ✦
+              </p>
+              <p className="text-[#E8ECF8] font-medium mb-1">No launches yet</p>
+              <p className="text-[#8A94B0] text-sm mb-6">Be the first to ask Why.</p>
               <Link
                 href="/launch"
-                className="mt-4 inline-block bg-[#FF6B2C] hover:bg-[#FF8A52] text-white font-semibold px-6 py-2.5 rounded-lg transition-colors"
+                className="inline-block bg-[#FF6B2C] hover:bg-[#FF8A52] text-white font-semibold px-6 py-2.5 rounded-lg transition-colors text-sm"
               >
-                Launch the first Why
+                Launch a Why
               </Link>
             </div>
           ) : (
