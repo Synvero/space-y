@@ -5,6 +5,7 @@ import { OrbitBadge } from '@/components/OrbitBadge'
 import { ScoreDial } from '@/components/ScoreDial'
 import { VoteScale } from '@/components/VoteScale'
 import { MissionCard } from '@/components/MissionCard'
+import { MarketWidget } from '@/components/MarketWidget'
 import type { Orbit } from '@/lib/scoring'
 
 interface PageProps {
@@ -46,7 +47,7 @@ export default async function QuestionPage({ params }: PageProps) {
       .order('score', { ascending: false }),
     supabase
       .from('markets')
-      .select('id, question_text, status, resolves_at, outcome')
+      .select('id, question_text, status, resolves_at, outcome, question_id')
       .eq('question_id', question.id)
       .single(),
     supabase
@@ -124,24 +125,14 @@ export default async function QuestionPage({ params }: PageProps) {
 
       {/* Market */}
       {market && (
-        <div className="bg-[#111729] border border-[#4D9FFF]/30 rounded-xl p-4 mb-6">
-          <p className="text-xs text-[#4D9FFF] font-mono mb-1">MARKET</p>
-          <p className="text-sm text-[#E8ECF8] mb-3">{market.question_text}</p>
-          <div className="flex items-center gap-2 text-xs text-[#8A94B0]">
-            <span
-              className={`font-mono font-bold px-2 py-0.5 rounded border ${
-                market.status === 'resolved'
-                  ? market.outcome ? 'text-[#3DDC97] border-[#3DDC97]/40' : 'text-[#FF5470] border-[#FF5470]/40'
-                  : 'text-[#4D9FFF] border-[#4D9FFF]/40'
-              }`}
-            >
-              {market.status === 'resolved'
-                ? market.outcome ? 'RESOLVED YES' : 'RESOLVED NO'
-                : market.status.toUpperCase()
-              }
-            </span>
-            <span>Resolves {new Date(market.resolves_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-          </div>
+        <div className="mb-6">
+          <MarketWidget
+            marketId={market.id}
+            questionText={market.question_text}
+            status={market.status}
+            resolvesAt={market.resolves_at}
+            outcome={market.outcome ?? null}
+          />
         </div>
       )}
 
