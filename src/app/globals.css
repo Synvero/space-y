@@ -61,8 +61,8 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
     box-sizing: border-box;
+    border-color: var(--color-border, #1E2740);
   }
   body {
     background-color: #0A0E1A;
