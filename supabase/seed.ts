@@ -26,12 +26,19 @@ async function cleanup() {
     'mara_perigee@spacey.demo',
     'why_not_wanda@spacey.demo',
   ]
-  for (const email of seedEmails) {
-    const { data: users } = await supabase.auth.admin.listUsers()
-    const user = users?.users?.find(u => u.email === email)
-    if (user) {
-      // delete cascade will handle profiles, questions, etc.
-      await supabase.auth.admin.deleteUser(user.id)
+  // Content tables reference profiles WITHOUT on-delete-cascade, so a user cannot be
+  // deleted while their authored rows still exist (the delete fails with a 500). Clear
+  // all content first (child → parent order), then the users cascade-delete cleanly.
+  const contentTables = ['votes', 'stakes', 'pledges', 'comments', 'reports', 'fuel_ledger', 'missions', 'markets', 'questions']
+  for (const t of contentTables) {
+    const { error } = await supabase.from(t).delete().gt('created_at', '1970-01-01T00:00:00Z')
+    if (error) throw error
+  }
+  const { data: users } = await supabase.auth.admin.listUsers()
+  for (const user of users?.users ?? []) {
+    if (user.email && seedEmails.includes(user.email)) {
+      const { error } = await supabase.auth.admin.deleteUser(user.id)
+      if (error) throw error
     }
   }
 }
@@ -124,14 +131,23 @@ async function run() {
   }
 
   async function addVotes(targetType: 'question' | 'mission', targetId: string, dimension: 'absurdity' | 'rigor', values: number[], voters: typeof profiles) {
-    for (let i = 0; i < values.length && i < voters.length; i++) {
-      await supabase.from('votes').insert({
-        user_id: voters[i].id,
+    // The prevent_self_vote trigger rejects an author voting on their own target.
+    // Exclude the author and backfill from the other profiles, so every call lands
+    // exactly values.length votes (otherwise questions silently end up under-voted).
+    const table = targetType === 'question' ? 'questions' : 'missions'
+    const { data: tgt } = await supabase.from(table).select('author_id').eq('id', targetId).single()
+    const authorId = (tgt as { author_id?: string } | null)?.author_id
+    const ordered = [...voters, ...profiles.filter(p => !voters.some(v => v.id === p.id))]
+    const eligible = ordered.filter(p => p.id !== authorId)
+    for (let i = 0; i < values.length && i < eligible.length; i++) {
+      const { error } = await supabase.from('votes').insert({
+        user_id: eligible[i].id,
         target_type: targetType,
         target_id: targetId,
         dimension,
         value: values[i],
       })
+      if (error) throw error
     }
   }
 
@@ -189,13 +205,21 @@ The prototype ran 47 days on 1000mAh. Peak scream level: 78dB at 10cm. The neigh
   await addVotes('question', q1.id, 'absurdity', [6, 7, 5, 6, 8], [doc, kessler, mara, wanda, gero])
   await addVotes('mission', m1.id, 'rigor', [8, 9, 7, 8, 9], [gero, doc, kessler, mara, wanda])
 
-  // Mark as landed via direct DB update (bypassing auth requirement in seed context)
+  // Mark as landed (seed context bypasses the auth-gated verify_landing RPC).
+  // Compute the same ×3 score verify_landing would produce, from the live aggregates,
+  // so the flagship landing shows a real tripled score instead of a hardcoded value.
+  const { data: q1agg } = await supabase.from('questions').select('absurdity').eq('id', q1.id).single()
+  const { data: m1agg } = await supabase.from('missions').select('rigor').eq('id', m1.id).single()
+  const landedScore = Math.round(
+    ((q1agg as { absurdity: number | null } | null)?.absurdity ?? 0) *
+    ((m1agg as { rigor: number | null } | null)?.rigor ?? 0) * 3
+  )
   await supabase.from('missions').update({
     status: 'landed',
     landed_at: new Date().toISOString(),
     proof_url: 'https://example.com/screaming-pot-demo',
     proof_note: 'Verified: working prototype demonstrated in video.',
-    score: 60,
+    score: landedScore,
   }).eq('id', m1.id)
   await supabase.from('questions').update({ status: 'landed' }).eq('id', q1.id)
 
